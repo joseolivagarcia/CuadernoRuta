@@ -322,13 +322,26 @@
         </LinearLayout>
     </LinearLayout>
     <LinearLayout
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_gravity="right"
-        android:layout_marginTop="10dp">
-        <com.google.android.material.button.MaterialButton
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="siguiente"/>
+        android:layout_marginTop="10dp"
+        android:gravity="center">
+        <ImageView
+            android:id="@+id/icoedit"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:layout_marginRight="20dp"
+            android:src="@drawable/ic_edit"/>
+        <ImageView
+            android:id="@+id/icodelete"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:layout_marginRight="20dp"
+            android:src="@drawable/ic_delete"/>
+        <ImageView
+            android:id="@+id/icoswipe"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:src="@drawable/icoswipe"/>
     </LinearLayout>
 </LinearLayout>

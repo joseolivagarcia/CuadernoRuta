@@ -1,16 +1,19 @@
 package com.example.cuadernoruta
 
+import android.content.Intent
 import android.view.View
 import android.widget.DatePicker
 import android.widget.ImageView
 import android.widget.TextView
 import android.widget.Toast
+import androidx.core.content.ContextCompat.startActivity
 import androidx.recyclerview.widget.RecyclerView
 import java.util.*
 
 class PagViewHolder(view: View): RecyclerView.ViewHolder(view) {
 
-    val icocamper = view.findViewById<ImageView>(R.id.camper)
+    val icoedit = view.findViewById<ImageView>(R.id.icoedit)
+    val icodelete = view.findViewById<ImageView>(R.id.icodelete)
 
     val fecha = view.findViewById<TextView>(R.id.tv_fecha_datos)
     val ruta = view.findViewById<TextView>(R.id.tv_ruta_datos)
@@ -55,9 +58,17 @@ class PagViewHolder(view: View): RecyclerView.ViewHolder(view) {
             Toast.makeText(gasolina.context,"Has pulsado la ruta: ${pagina.ruta}",Toast.LENGTH_LONG).show()
         }
 
-        //podria hacer clickable alguna parte concreta, por ejemplo el icono de la auto
-        icocamper.setOnClickListener{
-            Toast.makeText(gasolina.context,"has pulsado el icono de la camper",Toast.LENGTH_LONG).show()
+        //podria hacer clickable alguna parte concreta, por ejemplo el icono de editar y de eliminar
+        icoedit.setOnClickListener{
+            Toast.makeText(gasolina.context,"editar  ${pagina.ruta}",Toast.LENGTH_SHORT).show()
+            val intent = Intent(gasolina.context,EditActivity::class.java)
+            startActivity(gasolina.context,intent,null)
+
+
+        }
+
+        icodelete.setOnClickListener{
+            Toast.makeText(gasolina.context,"eliminar  ${pagina.ruta}",Toast.LENGTH_SHORT).show()
         }
     }
 
