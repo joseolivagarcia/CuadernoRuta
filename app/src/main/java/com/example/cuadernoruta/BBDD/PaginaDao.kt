@@ -1,9 +1,6 @@
 package com.example.cuadernoruta.BBDD
 
-import androidx.room.Dao
-import androidx.room.Insert
-import androidx.room.Query
-import androidx.room.Update
+import androidx.room.*
 import com.example.cuadernoruta.Models.Pagina
 
 @Dao
@@ -11,6 +8,10 @@ interface PaginaDao {
     //creo una funcion que me va a devolver todos los datos de la bbdd (todas las paginas)
     @Query("SELECT * FROM Pagina")
     fun getAll():MutableList<Pagina>
+
+    //funcion para eliminar
+    @Delete
+    fun delete(pagina: Pagina)
 
     //hago lo mismo para un insert, al recibir una List puedo insertar una pagina o varias a la vez
     @Insert

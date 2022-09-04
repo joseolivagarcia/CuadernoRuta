@@ -7,7 +7,9 @@ import android.widget.TextView
 import android.widget.Toast
 import androidx.core.content.ContextCompat.startActivity
 import androidx.recyclerview.widget.RecyclerView
+import androidx.room.Room
 import com.example.cuadernoruta.Activities.EditActivity
+import com.example.cuadernoruta.BBDD.AppDataBase
 import com.example.cuadernoruta.Models.Pagina
 import com.example.cuadernoruta.R
 
@@ -62,17 +64,20 @@ class PagViewHolder(view: View): RecyclerView.ViewHolder(view) {
 
          */
 
-        //podria hacer clickable alguna parte concreta, por ejemplo el icono de editar y de eliminar
+        /*podria hacer clickable alguna parte concreta, por ejemplo el icono de editar y de eliminar
+        En este caso como voy a editar una pagina ya creada, tengo que pasarle el id, asi en la actividad
+        de editar puedo cargar todos los datos de esa tarjeta y cambiarlos a mi gusto.
+         */
         icoedit.setOnClickListener{
-            Toast.makeText(gasolina.context,"editar  ${pagina.ruta}",Toast.LENGTH_SHORT).show()
             val intent = Intent(gasolina.context, EditActivity::class.java)
-            startActivity(gasolina.context,intent,null)
+            intent.putExtra("idpagina", pagina.id)
+            gasolina.context.startActivity(intent,null)
 
 
         }
 
         icodelete.setOnClickListener{
-            Toast.makeText(gasolina.context,"eliminar  ${pagina.ruta}",Toast.LENGTH_SHORT).show()
+            Toast.makeText(gasolina.context,"eliminar  ${pagina.id}",Toast.LENGTH_SHORT).show()
         }
     }
 

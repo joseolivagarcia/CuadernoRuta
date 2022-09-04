@@ -41,7 +41,7 @@
             android:layout_height="wrap_content"
             android:textAlignment="center"
             android:hint="Kilómetros"
-            android:inputType="number"/>
+            android:inputType="numberDecimal"/>
     </LinearLayout>
     <LinearLayout
         android:layout_width="match_parent"
@@ -60,7 +60,7 @@
             android:textAlignment="center"
             android:hint="Gas"
             android:layout_marginRight="5dp"
-            android:inputType="number"/>
+            android:inputType="numberDecimal"/>
         <ImageView
             android:layout_width="40dp"
             android:layout_height="40dp"
@@ -72,7 +72,7 @@
             android:textAlignment="center"
             android:hint="Peajes"
             android:layout_marginRight="5dp"
-            android:inputType="number"/>
+            android:inputType="numberDecimal"/>
         <ImageView
             android:layout_width="40dp"
             android:layout_height="40dp"
@@ -83,7 +83,7 @@
             android:layout_height="wrap_content"
             android:textAlignment="center"
             android:hint="Pernoc"
-            android:inputType="number"/>
+            android:inputType="numberDecimal"/>
     </LinearLayout>
     <LinearLayout
         android:layout_width="match_parent"
@@ -102,7 +102,7 @@
             android:textAlignment="center"
             android:hint="Super"
             android:layout_marginRight="5dp"
-            android:inputType="number"/>
+            android:inputType="numberDecimal"/>
         <ImageView
             android:layout_width="40dp"
             android:layout_height="40dp"
@@ -114,7 +114,7 @@
             android:textAlignment="center"
             android:hint="Rtes"
             android:layout_marginRight="5dp"
-            android:inputType="number"/>
+            android:inputType="numberDecimal"/>
         <ImageView
             android:layout_width="40dp"
             android:layout_height="40dp"
@@ -125,7 +125,7 @@
             android:layout_height="wrap_content"
             android:textAlignment="center"
             android:hint="Otros"
-            android:inputType="number"/>
+            android:inputType="numberDecimal"/>
     </LinearLayout>
     <LinearLayout
         android:layout_width="match_parent"
@@ -144,7 +144,7 @@
             android:textAlignment="center"
             android:hint="Atracc"
             android:layout_marginRight="5dp"
-            android:inputType="number"/>
+            android:inputType="numberDecimal"/>
         <ImageView
             android:layout_width="40dp"
             android:layout_height="40dp"
@@ -156,7 +156,7 @@
             android:textAlignment="center"
             android:hint="Otros"
             android:layout_marginRight="5dp"
-            android:inputType="number"/>
+            android:inputType="numberDecimal"/>
     </LinearLayout>
     <LinearLayout
         android:layout_width="match_parent"
@@ -214,6 +214,12 @@
             android:layout_height="40dp"
             android:layout_marginLeft="15dp"
             android:src="@drawable/ic_guardar"/>
+        <ImageView
+            android:id="@+id/icoborrar"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:layout_marginLeft="25dp"
+            android:src="@drawable/ic_borrar"/>
     </LinearLayout>
 
 </LinearLayout>
