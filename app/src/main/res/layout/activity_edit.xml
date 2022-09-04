@@ -7,7 +7,7 @@
     android:layout_height="match_parent"
     android:padding="15dp"
     android:orientation="vertical"
-    tools:context=".EditActivity">
+    tools:context=".Activities.EditActivity">
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -16,8 +16,8 @@
         android:orientation="vertical"
         android:background="@drawable/redondeobordes">
         <ImageView
-            android:layout_width="70dp"
-            android:layout_height="70dp"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
             android:layout_marginTop="5dp"
             android:src="@drawable/campervan"/>
         <DatePicker
@@ -47,81 +47,81 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:gravity="center"
-        android:layout_marginTop="5dp"
+        android:layout_marginTop="15dp"
         android:background="@drawable/redondeobordes">
         <ImageView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
             android:src="@drawable/gaolina"/>
         <EditText
             android:id="@+id/et_gasolina"
-            android:layout_width="wrap_content"
+            android:layout_width="75dp"
             android:layout_height="wrap_content"
             android:textAlignment="center"
-            android:hint="Gasolina"
+            android:hint="Gas"
             android:layout_marginRight="5dp"
             android:inputType="number"/>
         <ImageView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
             android:src="@drawable/peajes"/>
         <EditText
             android:id="@+id/et_peajes"
-            android:layout_width="wrap_content"
+            android:layout_width="75dp"
             android:layout_height="wrap_content"
             android:textAlignment="center"
             android:hint="Peajes"
             android:layout_marginRight="5dp"
             android:inputType="number"/>
         <ImageView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
             android:src="@drawable/pernocta"/>
         <EditText
             android:id="@+id/et_pernocta"
-            android:layout_width="wrap_content"
+            android:layout_width="75dp"
             android:layout_height="wrap_content"
             android:textAlignment="center"
-            android:hint="Pernocta"
+            android:hint="Pernoc"
             android:inputType="number"/>
     </LinearLayout>
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:gravity="center"
-        android:layout_marginTop="5dp"
+        android:layout_marginTop="15dp"
         android:background="@drawable/redondeobordes">
         <ImageView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
             android:src="@drawable/market"/>
         <EditText
             android:id="@+id/et_supermercado"
-            android:layout_width="wrap_content"
+            android:layout_width="75dp"
             android:layout_height="wrap_content"
             android:textAlignment="center"
             android:hint="Super"
             android:layout_marginRight="5dp"
             android:inputType="number"/>
         <ImageView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
             android:src="@drawable/rtes"/>
         <EditText
             android:id="@+id/et_rtes"
-            android:layout_width="wrap_content"
+            android:layout_width="75dp"
             android:layout_height="wrap_content"
             android:textAlignment="center"
             android:hint="Rtes"
             android:layout_marginRight="5dp"
             android:inputType="number"/>
         <ImageView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
             android:src="@drawable/otros"/>
         <EditText
             android:id="@+id/et_otros_compras"
-            android:layout_width="wrap_content"
+            android:layout_width="75dp"
             android:layout_height="wrap_content"
             android:textAlignment="center"
             android:hint="Otros"
@@ -131,27 +131,27 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:gravity="center"
-        android:layout_marginTop="5dp"
+        android:layout_marginTop="15dp"
         android:background="@drawable/redondeobordes">
         <ImageView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
             android:src="@drawable/ocio"/>
         <EditText
             android:id="@+id/et_atracciones"
-            android:layout_width="wrap_content"
+            android:layout_width="75dp"
             android:layout_height="wrap_content"
             android:textAlignment="center"
-            android:hint="Atracciones"
+            android:hint="Atracc"
             android:layout_marginRight="5dp"
             android:inputType="number"/>
         <ImageView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
             android:src="@drawable/otros"/>
         <EditText
             android:id="@+id/et_otros_ocio"
-            android:layout_width="wrap_content"
+            android:layout_width="75dp"
             android:layout_height="wrap_content"
             android:textAlignment="center"
             android:hint="Otros"
@@ -163,12 +163,12 @@
         android:layout_height="wrap_content"
         android:orientation="horizontal"
         android:padding="10dp"
-        android:layout_marginTop="10dp"
+        android:layout_marginTop="15dp"
         android:gravity="center_vertical"
         android:background="@drawable/redondeobordes">
         <ImageView
-            android:layout_width="50dp"
-            android:layout_height="50dp"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
             android:src="@drawable/iconotas"/>
         <LinearLayout
             android:layout_width="match_parent"
@@ -196,6 +196,24 @@
                     android:textColor="@color/black"/>
             </LinearLayout>
         </LinearLayout>
+    </LinearLayout>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
+        android:gravity="center">
+        <ImageView
+            android:id="@+id/icoedit"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:layout_marginRight="15dp"
+            android:src="@drawable/ic_edit"/>
+        <ImageView
+            android:id="@+id/icoguardar"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:layout_marginLeft="15dp"
+            android:src="@drawable/ic_guardar"/>
     </LinearLayout>
 
 </LinearLayout>

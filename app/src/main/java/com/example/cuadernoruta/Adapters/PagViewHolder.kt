@@ -1,14 +1,15 @@
-package com.example.cuadernoruta
+package com.example.cuadernoruta.Adapters
 
 import android.content.Intent
 import android.view.View
-import android.widget.DatePicker
 import android.widget.ImageView
 import android.widget.TextView
 import android.widget.Toast
 import androidx.core.content.ContextCompat.startActivity
 import androidx.recyclerview.widget.RecyclerView
-import java.util.*
+import com.example.cuadernoruta.Activities.EditActivity
+import com.example.cuadernoruta.Models.Pagina
+import com.example.cuadernoruta.R
 
 class PagViewHolder(view: View): RecyclerView.ViewHolder(view) {
 
@@ -53,15 +54,18 @@ class PagViewHolder(view: View): RecyclerView.ViewHolder(view) {
 
         comentarios.text = pagina.comentarios
 
+        /*
         itemView.setOnClickListener{
             //hacemos clickable la tarjeta(pagina) entera, da igual en que parte pulsemos
             Toast.makeText(gasolina.context,"Has pulsado la ruta: ${pagina.ruta}",Toast.LENGTH_LONG).show()
         }
 
+         */
+
         //podria hacer clickable alguna parte concreta, por ejemplo el icono de editar y de eliminar
         icoedit.setOnClickListener{
             Toast.makeText(gasolina.context,"editar  ${pagina.ruta}",Toast.LENGTH_SHORT).show()
-            val intent = Intent(gasolina.context,EditActivity::class.java)
+            val intent = Intent(gasolina.context, EditActivity::class.java)
             startActivity(gasolina.context,intent,null)
 
 

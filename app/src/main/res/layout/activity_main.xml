@@ -4,7 +4,20 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".MainActivity">
+    tools:context=".Activities.MainActivity">
+
+    <com.google.android.material.floatingactionbutton.FloatingActionButton
+        android:id="@+id/fab"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:backgroundTint="@color/gastos1"
+        android:src="@drawable/ic_add"
+        app:layout_constraintBottom_toBottomOf="@id/viewPager"
+        app:layout_constraintEnd_toEndOf="@+id/viewPager"
+        android:layout_marginRight="15dp"
+        android:layout_marginBottom="15dp">
+
+    </com.google.android.material.floatingactionbutton.FloatingActionButton>
 
     <androidx.viewpager2.widget.ViewPager2
         android:id="@+id/viewPager"

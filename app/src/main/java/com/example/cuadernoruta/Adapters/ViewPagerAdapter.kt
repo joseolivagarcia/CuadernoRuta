@@ -1,9 +1,10 @@
-package com.example.cuadernoruta
+package com.example.cuadernoruta.Adapters
 
 import android.view.LayoutInflater
-import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
+import com.example.cuadernoruta.Models.Pagina
+import com.example.cuadernoruta.R
 
 class ViewPagerAdapter(private val lista: List<Pagina>): RecyclerView.Adapter<PagViewHolder>() {
 
