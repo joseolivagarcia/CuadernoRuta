@@ -214,12 +214,6 @@
             android:layout_height="40dp"
             android:layout_marginLeft="15dp"
             android:src="@drawable/ic_guardar"/>
-        <ImageView
-            android:id="@+id/icoborrar"
-            android:layout_width="40dp"
-            android:layout_height="40dp"
-            android:layout_marginLeft="25dp"
-            android:src="@drawable/ic_borrar"/>
     </LinearLayout>
 
 </LinearLayout>

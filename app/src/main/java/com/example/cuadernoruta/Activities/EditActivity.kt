@@ -15,6 +15,30 @@ import com.example.cuadernoruta.R
 
 class EditActivity : AppCompatActivity() {
 
+    lateinit var ruta: EditText
+    lateinit var kilometros: EditText
+    lateinit var gasolina: EditText
+    lateinit var peajes: EditText
+    lateinit var pernocta: EditText
+    lateinit var supermercado: EditText
+    lateinit var restaurantes: EditText
+    lateinit var otroscompras: EditText
+    lateinit var atracciones: EditText
+    lateinit var otrosocio: EditText
+    lateinit var comentarios: EditText
+
+    lateinit var datosruta: String
+    lateinit var datoskm: String
+    lateinit var datosgas: String
+    lateinit var datospeajes: String
+    lateinit var datospernocta: String
+    lateinit var datossuper: String
+    lateinit var datosrtes: String
+    lateinit var datosotroscompras: String
+    lateinit var datosatracc: String
+    lateinit var datosotrosocio: String
+    lateinit var datoscoment: String
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_edit)
@@ -29,20 +53,19 @@ class EditActivity : AppCompatActivity() {
         //referencio todas las vistas que voy a usar
 
         val fecha = findViewById<DatePicker>(R.id.date)
-        val ruta = findViewById<EditText>(R.id.et_ruta)
-        val kilometros = findViewById<EditText>(R.id.et_km)
-        val gasolina = findViewById<EditText>(R.id.et_gasolina)
-        val peajes = findViewById<EditText>(R.id.et_peajes)
-        val pernocta = findViewById<EditText>(R.id.et_pernocta)
-        val supermercado = findViewById<EditText>(R.id.et_supermercado)
-        val restaurantes = findViewById<EditText>(R.id.et_rtes)
-        val otroscompras = findViewById<EditText>(R.id.et_otros_compras)
-        val atracciones = findViewById<EditText>(R.id.et_atracciones)
-        val otrosocio = findViewById<EditText>(R.id.et_otros_ocio)
-        val comentarios = findViewById<EditText>(R.id.et_comentario)
+        ruta = findViewById(R.id.et_ruta)
+        kilometros = findViewById(R.id.et_km)
+        gasolina = findViewById(R.id.et_gasolina)
+        peajes = findViewById(R.id.et_peajes)
+        pernocta = findViewById(R.id.et_pernocta)
+        supermercado = findViewById(R.id.et_supermercado)
+        restaurantes = findViewById(R.id.et_rtes)
+        otroscompras = findViewById(R.id.et_otros_compras)
+        atracciones = findViewById(R.id.et_atracciones)
+        otrosocio = findViewById(R.id.et_otros_ocio)
+        comentarios = findViewById(R.id.et_comentario)
         val btneditar = findViewById<ImageView>(R.id.icoedit)
         val btnguardar = findViewById<ImageView>(R.id.icoguardar)
-        val btnborrar = findViewById<ImageView>(R.id.icoborrar)
 
         //obtengo de la bbdd la pagina que tiene el id que recibo y relleno los campos con sus datos
         val paginaRecibida = paginaid?.let { db.paginaDao().getById(it) }
@@ -51,69 +74,33 @@ class EditActivity : AppCompatActivity() {
             //si el id no es nulo, es decir que si traigo una pagina
             if(paginaid >= 0) {
 
-                if(paginaRecibida != null){
-
-                }
                 if (paginaRecibida != null) {
                     ruta.setText(paginaRecibida.ruta)
-                }
-                if (paginaRecibida != null) {
                     kilometros.setText(paginaRecibida.kilometros.toString())
-                }
-                if (paginaRecibida != null) {
                     gasolina.setText(paginaRecibida.gasolina.toString())
-                }
-                if (paginaRecibida != null) {
                     peajes.setText(paginaRecibida.peajes.toString())
-                }
-                if (paginaRecibida != null) {
                     pernocta.setText(paginaRecibida.pernocta.toString())
-                }
-                if (paginaRecibida != null) {
                     supermercado.setText(paginaRecibida.supermercado.toString())
-                }
-                if (paginaRecibida != null) {
                     restaurantes.setText(paginaRecibida.restaurantes.toString())
-                }
-                if (paginaRecibida != null) {
                     otroscompras.setText(paginaRecibida.otrosCompras.toString())
-                }
-                if (paginaRecibida != null) {
                     atracciones.setText(paginaRecibida.atracciones.toString())
-                }
-                if (paginaRecibida != null) {
                     atracciones.setText(paginaRecibida.atracciones.toString())
-                }
-                if (paginaRecibida != null) {
                     otrosocio.setText(paginaRecibida.otrosOcio.toString())
-                }
-                if (paginaRecibida != null) {
                     comentarios.setText(paginaRecibida.comentarios)
                 }
                 }
             }else {
             btneditar.isEnabled = false //si estoy para crear una pagina nueva este boton no tendra sentido (solo el de guardar)
-            btnborrar.isEnabled = false //si estoy para crear una pagina no tiene sentido borrar
         }
 
         //doy funcionalidad al boton de guardar una pagina
         btnguardar.setOnClickListener {
             //obtengo todos los textos de los campos que haya rellenado
+            obtenerCampos()
             val dia = fecha.dayOfMonth
             val mes = fecha.month
             val year = fecha.year
             val datosfecha = "$dia / $mes / $year"
-            val datosruta = ruta.text.toString()
-            val datoskm = kilometros.text.toString()
-            val datosgas = gasolina.text.toString()
-            val datospeajes = peajes.text.toString()
-            val datospernocta = pernocta.text.toString()
-            val datossuper = supermercado.text.toString()
-            val datosrtes = restaurantes.text.toString()
-            val datosotroscompras = otroscompras.text.toString()
-            val datosatracc = atracciones.text.toString()
-            val datosotrosocio = otrosocio.text.toString()
-            val datoscoment = comentarios.text.toString()
 
             //creo una nueva pagina y la guardo en la bbdd
             val newPagina = Pagina(0,
@@ -142,22 +129,11 @@ class EditActivity : AppCompatActivity() {
 
         btneditar.setOnClickListener {
             //practicamente es lo mismo que el boton de guardar solo que actualizamos en la bbdd
-
+            obtenerCampos()
             val dia = fecha.dayOfMonth
             val mes = fecha.month
             val year = fecha.year
             val datosfecha = "$dia / $mes / $year"
-            val datosruta = ruta.text.toString()
-            val datoskm = kilometros.text.toString()
-            val datosgas = gasolina.text.toString()
-            val datospeajes = peajes.text.toString()
-            val datospernocta = pernocta.text.toString()
-            val datossuper = supermercado.text.toString()
-            val datosrtes = restaurantes.text.toString()
-            val datosotroscompras = otroscompras.text.toString()
-            val datosatracc = atracciones.text.toString()
-            val datosotrosocio = otrosocio.text.toString()
-            val datoscoment = comentarios.text.toString()
 
             //creo una nueva pagina (la misma con los datos actualizados) y la guardo en la bbdd
             val editPagina = paginaid?.let {
@@ -185,22 +161,20 @@ class EditActivity : AppCompatActivity() {
 
             Toast.makeText(this,"Página editada correctamente",Toast.LENGTH_SHORT).show()
         }
+    }
 
-        btnborrar.setOnClickListener {
-            var pag: Pagina? = null
-            if (paginaid != null) {
-                pag = db.paginaDao().getById(paginaid)
-            }
-            if (pag != null) {
-                db.paginaDao().delete(pag)
-            }
-
-            //vuelvo a la actividad ppal para comprobar si se ha almacenado la hoja de gasto
-            val intent = Intent(this,MainActivity::class.java)
-            startActivity( intent, null)
-
-            Toast.makeText(this,"Página $paginaid borrada correctamente",Toast.LENGTH_SHORT).show()
-        }
+    private fun obtenerCampos() {
+        datosruta = ruta.text.toString()
+        datoskm = kilometros.text.toString()
+        datosgas = gasolina.text.toString()
+        datospeajes = peajes.text.toString()
+        datospernocta = pernocta.text.toString()
+        datossuper = supermercado.text.toString()
+        datosrtes = restaurantes.text.toString()
+        datosotroscompras = otroscompras.text.toString()
+        datosatracc = atracciones.text.toString()
+        datosotrosocio = otrosocio.text.toString()
+        datoscoment = comentarios.text.toString()
 
     }
 

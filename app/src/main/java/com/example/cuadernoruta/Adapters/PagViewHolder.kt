@@ -9,6 +9,7 @@ import androidx.core.content.ContextCompat.startActivity
 import androidx.recyclerview.widget.RecyclerView
 import androidx.room.Room
 import com.example.cuadernoruta.Activities.EditActivity
+import com.example.cuadernoruta.Activities.MainActivity
 import com.example.cuadernoruta.BBDD.AppDataBase
 import com.example.cuadernoruta.Models.Pagina
 import com.example.cuadernoruta.R
@@ -77,7 +78,14 @@ class PagViewHolder(view: View): RecyclerView.ViewHolder(view) {
         }
 
         icodelete.setOnClickListener{
-            Toast.makeText(gasolina.context,"eliminar  ${pagina.id}",Toast.LENGTH_SHORT).show()
+            //referencio la base de datos para poder usarla donde me interese
+            val db: AppDataBase = Room.databaseBuilder(gasolina.context,AppDataBase::class.java,"paginasDb").allowMainThreadQueries().build()
+            val paginaABorrar = db.paginaDao().getById(pagina.id)
+            db.paginaDao().delete(paginaABorrar)
+            //vuelvo a la actividad ppal para comprobar si se ha almacenado la hoja de gasto
+            val intent = Intent(gasolina.context, MainActivity::class.java)
+            gasolina.context.startActivity( intent, null)
+            Toast.makeText(gasolina.context,"Pagina eliminada",Toast.LENGTH_SHORT).show()
         }
     }
 
