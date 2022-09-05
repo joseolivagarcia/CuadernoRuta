@@ -34,7 +34,7 @@ class MainActivity : AppCompatActivity() {
 
         //inicializo lista en la que guardo lo que recoja de la base de datos
         listadoPaginas = db.paginaDao().getAll()
-        Toast.makeText(this,"${listadoPaginas.size.toString()}",Toast.LENGTH_SHORT).show()
+        //Toast.makeText(this,"${listadoPaginas.size.toString()}",Toast.LENGTH_SHORT).show()
         //referencio el boton + y lo inicializo
         val fab = binding.fab
         fab.setOnClickListener {

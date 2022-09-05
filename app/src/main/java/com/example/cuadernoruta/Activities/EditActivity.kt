@@ -7,6 +7,7 @@ import android.widget.DatePicker
 import android.widget.EditText
 import android.widget.ImageView
 import android.widget.Toast
+import androidx.appcompat.app.AlertDialog
 import androidx.core.view.isVisible
 import androidx.room.Room
 import com.example.cuadernoruta.BBDD.AppDataBase
@@ -45,7 +46,7 @@ class EditActivity : AppCompatActivity() {
 
         //recojo el id que me viene (si es que me viene)
         val paginaid = intent.extras?.getInt("idpagina")
-        Toast.makeText(this,"${paginaid.toString()}",Toast.LENGTH_SHORT).show()
+        //Toast.makeText(this,"${paginaid.toString()}",Toast.LENGTH_SHORT).show()
 
         //referencio la base de datos para poder usarla donde me interese
         val db: AppDataBase = Room.databaseBuilder(this,AppDataBase::class.java,"paginasDb").allowMainThreadQueries().build()
@@ -102,6 +103,42 @@ class EditActivity : AppCompatActivity() {
             val year = fecha.year
             val datosfecha = "$dia / $mes / $year"
 
+            //me aseguro que si algun campo no esta relleno le asigno un valor
+
+            if (datosruta.equals("")){
+                datosruta = "Sin ruta definida"
+            }
+            if (datoskm .equals("")){
+                datoskm = "0"
+            }
+            if (datosgas.equals("")){
+                datosgas = "0"
+            }
+            if (datospeajes.equals("")){
+                datospeajes = "0"
+            }
+            if (datospernocta.equals("")){
+                datospernocta = "0"
+            }
+            if (datossuper.equals("")){
+                datossuper = "0"
+            }
+            if (datosrtes.equals("")){
+                datosrtes = "0"
+            }
+            if (datosotroscompras.equals("")){
+                datosotroscompras = "0"
+            }
+            if (datosatracc.equals("")){
+                datosatracc = "0"
+            }
+            if (datosotrosocio.equals("")){
+                datosotrosocio = "0"
+            }
+            if (datoscoment.equals("")){
+                datoscoment = "Sin comentarios"
+            }
+
             //creo una nueva pagina y la guardo en la bbdd
             val newPagina = Pagina(0,
                 datosfecha,
@@ -128,38 +165,88 @@ class EditActivity : AppCompatActivity() {
         }
 
         btneditar.setOnClickListener {
-            //practicamente es lo mismo que el boton de guardar solo que actualizamos en la bbdd
-            obtenerCampos()
-            val dia = fecha.dayOfMonth
-            val mes = fecha.month
-            val year = fecha.year
-            val datosfecha = "$dia / $mes / $year"
+            //meto la accion en un cuadro de dialogo para confirmar o cancelar
+            val dialog = AlertDialog.Builder(this)
+                .setMessage("Quieres editar ésta página?")
+                .setNegativeButton("NO"){
+                    view, _ -> view.dismiss()
+                }
+                .setPositiveButton("SI"){
+                    view, _ -> view.dismiss()
+                    //practicamente es lo mismo que el boton de guardar solo que actualizamos en la bbdd
+                    obtenerCampos()
+                    val dia = fecha.dayOfMonth
+                    val mes = fecha.month
+                    val year = fecha.year
+                    val datosfecha = "$dia / $mes / $year"
 
-            //creo una nueva pagina (la misma con los datos actualizados) y la guardo en la bbdd
-            val editPagina = paginaid?.let {
-                    it1 -> Pagina(
-                it1,datosfecha,
-                datosruta,
-                datoskm.toFloat(),
-                datosgas.toFloat(),
-                datospeajes.toFloat(),
-                datospernocta.toFloat(),
-                datossuper.toFloat(),
-                datosrtes.toFloat(),
-                datosotroscompras.toFloat(),
-                datosatracc.toFloat(),
-                datosotrosocio.toFloat(),
-                datoscoment) }
+                    //me aseguro que si algun campo no esta relleno le asigno un valor
 
-            if (editPagina != null) {
-                db.paginaDao().update(editPagina)
-            }
+                    if (datosruta.equals("")){
+                        datosruta = "Sin ruta definida"
+                    }
+                    if (datoskm .equals("")){
+                        datoskm = "0"
+                    }
+                    if (datosgas.equals("")){
+                        datosgas = "0"
+                    }
+                    if (datospeajes.equals("")){
+                        datospeajes = "0"
+                    }
+                    if (datospernocta.equals("")){
+                        datospernocta = "0"
+                    }
+                    if (datossuper.equals("")){
+                        datossuper = "0"
+                    }
+                    if (datosrtes.equals("")){
+                        datosrtes = "0"
+                    }
+                    if (datosotroscompras.equals("")){
+                        datosotroscompras = "0"
+                    }
+                    if (datosatracc.equals("")){
+                        datosatracc = "0"
+                    }
+                    if (datosotrosocio.equals("")){
+                        datosotrosocio = "0"
+                    }
+                    if (datoscoment.equals("")){
+                        datoscoment = "Sin comentarios"
+                    }
 
-            //vuelvo a la actividad ppal para comprobar si se ha almacenado la hoja de gasto
-            val intent = Intent(this,MainActivity::class.java)
-            startActivity( intent, null)
+                    //creo una nueva pagina (la misma con los datos actualizados) y la guardo en la bbdd
+                    val editPagina = paginaid?.let {
+                            it1 -> Pagina(
+                        it1,datosfecha,
+                        datosruta,
+                        datoskm.toFloat(),
+                        datosgas.toFloat(),
+                        datospeajes.toFloat(),
+                        datospernocta.toFloat(),
+                        datossuper.toFloat(),
+                        datosrtes.toFloat(),
+                        datosotroscompras.toFloat(),
+                        datosatracc.toFloat(),
+                        datosotrosocio.toFloat(),
+                        datoscoment) }
 
-            Toast.makeText(this,"Página editada correctamente",Toast.LENGTH_SHORT).show()
+                    if (editPagina != null) {
+                        db.paginaDao().update(editPagina)
+                    }
+
+                    //vuelvo a la actividad ppal para comprobar si se ha almacenado la hoja de gasto
+                    val intent = Intent(this,MainActivity::class.java)
+                    startActivity( intent, null)
+
+                    Toast.makeText(this,"Página editada correctamente",Toast.LENGTH_SHORT).show()
+
+                }
+                .setCancelable(false)
+                .create()
+
+            dialog.show()
         }
     }
 

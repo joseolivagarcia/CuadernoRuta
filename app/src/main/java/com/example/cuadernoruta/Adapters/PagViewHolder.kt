@@ -5,6 +5,7 @@ import android.view.View
 import android.widget.ImageView
 import android.widget.TextView
 import android.widget.Toast
+import androidx.appcompat.app.AlertDialog
 import androidx.core.content.ContextCompat.startActivity
 import androidx.recyclerview.widget.RecyclerView
 import androidx.room.Room
@@ -78,14 +79,27 @@ class PagViewHolder(view: View): RecyclerView.ViewHolder(view) {
         }
 
         icodelete.setOnClickListener{
-            //referencio la base de datos para poder usarla donde me interese
-            val db: AppDataBase = Room.databaseBuilder(gasolina.context,AppDataBase::class.java,"paginasDb").allowMainThreadQueries().build()
-            val paginaABorrar = db.paginaDao().getById(pagina.id)
-            db.paginaDao().delete(paginaABorrar)
-            //vuelvo a la actividad ppal para comprobar si se ha almacenado la hoja de gasto
-            val intent = Intent(gasolina.context, MainActivity::class.java)
-            gasolina.context.startActivity( intent, null)
-            Toast.makeText(gasolina.context,"Pagina eliminada",Toast.LENGTH_SHORT).show()
+            val dialog = AlertDialog.Builder(gasolina.context)
+                .setMessage("Quieres eliminar ésta página?")
+                .setNegativeButton("NO"){
+                        view, _ -> view.dismiss()
+                }
+                .setPositiveButton("SI") { view, _ ->
+                    view.dismiss()
+                    //referencio la base de datos para poder usarla donde me interese
+                    val db: AppDataBase = Room.databaseBuilder(gasolina.context,AppDataBase::class.java,"paginasDb").allowMainThreadQueries().build()
+                    val paginaABorrar = db.paginaDao().getById(pagina.id)
+                    db.paginaDao().delete(paginaABorrar)
+                    //vuelvo a la actividad ppal para comprobar si se ha almacenado la hoja de gasto
+                    val intent = Intent(gasolina.context, MainActivity::class.java)
+                    gasolina.context.startActivity( intent, null)
+                    Toast.makeText(gasolina.context,"Pagina eliminada",Toast.LENGTH_SHORT).show()
+                }
+                .setCancelable(false)
+                .create()
+
+            dialog.show()
+
         }
     }
 
