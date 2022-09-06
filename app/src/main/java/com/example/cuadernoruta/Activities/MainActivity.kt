@@ -69,7 +69,7 @@ class MainActivity : AppCompatActivity() {
         when (item.itemId) {
 
             R.id.locomocion -> {
-
+                Toast.makeText(this, "locomocion", Toast.LENGTH_SHORT).show()
                 return true
             }
             R.id.ocio -> {
