@@ -1,13 +1,17 @@
 package com.example.cuadernoruta.Activities
 
 import android.content.Intent
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.view.Menu
+import android.view.MenuItem
 import android.widget.Toast
+import androidx.appcompat.app.AppCompatActivity
+import androidx.appcompat.widget.Toolbar
 import androidx.room.Room
 import com.example.cuadernoruta.Adapters.ViewPagerAdapter
 import com.example.cuadernoruta.BBDD.AppDataBase
 import com.example.cuadernoruta.Models.Pagina
+import com.example.cuadernoruta.R
 import com.example.cuadernoruta.databinding.ActivityMainBinding
 import java.text.SimpleDateFormat
 import java.util.*
@@ -29,6 +33,10 @@ class MainActivity : AppCompatActivity() {
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
+        //agregamos el toolbar del xml
+        val toolbar: Toolbar = binding.toolbar
+        setSupportActionBar(toolbar)
+
         //referencio la base de datos para poder usarla donde me interese
         val db: AppDataBase = Room.databaseBuilder(this,AppDataBase::class.java,"paginasDb").allowMainThreadQueries().build()
 
@@ -49,6 +57,35 @@ class MainActivity : AppCompatActivity() {
     private fun initRecyclerView() {
         val viewpager = binding.viewPager
         viewpager.adapter = ViewPagerAdapter(listadoPaginas)
+    }
+
+    //para poner menus en el toolbar sobreescribo estos dos metodos
+    override fun onCreateOptionsMenu(menu: Menu?): Boolean {
+        menuInflater.inflate(R.menu.mimenu, menu)
+        return super.onCreateOptionsMenu(menu)
+    }
+
+    override fun onOptionsItemSelected(item: MenuItem): Boolean {
+        when (item.itemId) {
+
+            R.id.locomocion -> {
+
+                return true
+            }
+            R.id.ocio -> {
+                Toast.makeText(this, "ocio", Toast.LENGTH_SHORT).show()
+                return true
+            }
+            R.id.compras -> {
+                Toast.makeText(this, "compras", Toast.LENGTH_SHORT).show()
+                return true
+            }
+            R.id.total -> {
+                Toast.makeText(this, "total", Toast.LENGTH_SHORT).show()
+                return true
+            }
+        }
+        return super.onOptionsItemSelected(item)
     }
 
     //Deactivate back on this Activity
