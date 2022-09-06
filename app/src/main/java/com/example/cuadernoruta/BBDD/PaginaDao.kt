@@ -24,4 +24,32 @@ interface PaginaDao {
     //para actualizar una pagina (actualiza la pagina que recibe por parametro
     @Update
     fun update(pagina: Pagina)
+
+    //creo las funciones que suman los datos de cada columna
+    @Query("SELECT SUM(kilometros) FROM Pagina")
+    fun gettotalkm(): Float
+
+    @Query("SELECT SUM(gasolina) FROM Pagina")
+    fun gettotalgasolina(): Float
+
+    @Query("SELECT SUM(peajes) FROM Pagina")
+    fun gettotalpeajes(): Float
+
+    @Query("SELECT SUM(pernocta) FROM Pagina")
+    fun gettotalpernocta(): Float
+
+    @Query("SELECT SUM(supermercado) FROM Pagina")
+    fun gettotalsuper(): Float
+
+    @Query("SELECT SUM(restaurantes) FROM Pagina")
+    fun gettotalrtes(): Float
+
+    @Query("SELECT SUM(otrosCompras) FROM Pagina")
+    fun gettotalotroscompras(): Float
+
+    @Query("SELECT SUM(atracciones) FROM Pagina")
+    fun gettotalatracciones(): Float
+
+    @Query("SELECT SUM(otrosOcio) FROM Pagina")
+    fun gettotalotrosocio(): Float
 }

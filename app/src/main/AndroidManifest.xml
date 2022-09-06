@@ -14,7 +14,7 @@
         android:theme="@style/Theme.CuadernoRuta"
         tools:targetApi="31">
         <activity
-            android:name=".GastosTotalesActivity"
+            android:name=".Activities.GastosTotalesActivity"
             android:exported="false" />
         <activity
             android:name=".Activities.EditActivity"

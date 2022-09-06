@@ -3,9 +3,18 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     tools:context=".Activities.GastosTotalesActivity"
-    android:orientation="vertical"
-    android:layout_margin="15dp">
+    android:orientation="vertical">
+
+    <androidx.appcompat.widget.Toolbar
+        android:id="@+id/toolbar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/gastos1"
+        app:title="Cuaderno de Ruta"
+        app:titleTextColor="@color/white"
+        />
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -23,6 +32,18 @@
             android:layout_height="wrap_content"
             android:text="GASTOS TOTALES"
             android:textSize="24dp"
+            android:layout_marginTop="10dp"
+            android:textColor="@color/black"
+            android:textStyle="bold|italic"
+            android:gravity="center">
+        </TextView>
+        <TextView
+            android:id="@+id/tv_totalkm"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Kilómetros"
+            android:textSize="18dp"
+            android:layout_marginTop="5dp"
             android:textColor="@color/black"
             android:textStyle="bold|italic"
             android:gravity="center">
@@ -36,7 +57,9 @@
         android:layout_marginTop="20dp"
         android:gravity="center_vertical"
         android:background="@drawable/redondeobordes"
-        android:backgroundTint="@color/gastos2">
+        android:backgroundTint="@color/gastos2"
+        android:layout_marginLeft="10dp"
+        android:layout_marginRight="10dp">
         <ImageView
             android:layout_width="80dp"
             android:layout_height="100dp"
@@ -57,7 +80,7 @@
                     android:text="Gasolina: "
                     android:textColor="@color/black"/>
                 <TextView
-                    android:id="@+id/tv_gasolina_datos"
+                    android:id="@+id/tv_totalgasolina"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="XXX "
@@ -75,7 +98,7 @@
                     android:text="Peajes: "
                     android:textColor="@color/black"/>
                 <TextView
-                    android:id="@+id/tv_peajes_datos"
+                    android:id="@+id/tv_totalpeajes"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="XXX "
@@ -93,7 +116,7 @@
                     android:text="Pernocta: "
                     android:textColor="@color/black"/>
                 <TextView
-                    android:id="@+id/tv_pernocta_datos"
+                    android:id="@+id/tv_totalpernocta"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="XXX "
@@ -110,7 +133,9 @@
         android:layout_marginTop="10dp"
         android:gravity="center_vertical"
         android:background="@drawable/redondeobordes"
-        android:backgroundTint="@color/gastos3">
+        android:backgroundTint="@color/gastos3"
+        android:layout_marginLeft="10dp"
+        android:layout_marginRight="10dp">
         <ImageView
             android:layout_width="80dp"
             android:layout_height="100dp"
@@ -131,7 +156,7 @@
                     android:text="Supermercado: "
                     android:textColor="@color/black"/>
                 <TextView
-                    android:id="@+id/tv_super_datos"
+                    android:id="@+id/tv_totalsuper"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="XXX "
@@ -149,7 +174,7 @@
                     android:text="Restaurantes: "
                     android:textColor="@color/black"/>
                 <TextView
-                    android:id="@+id/tv_rtes_datos"
+                    android:id="@+id/tv_totalrtes"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="XXX "
@@ -167,7 +192,7 @@
                     android:text="Otros: "
                     android:textColor="@color/black"/>
                 <TextView
-                    android:id="@+id/tv_otros_datos"
+                    android:id="@+id/tv_totalotros"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="XXX "
@@ -184,7 +209,9 @@
         android:layout_marginTop="10dp"
         android:gravity="center_vertical"
         android:background="@drawable/redondeobordes"
-        android:backgroundTint="@color/gastos4">
+        android:backgroundTint="@color/gastos4"
+        android:layout_marginLeft="10dp"
+        android:layout_marginRight="10dp">
         <ImageView
             android:layout_width="80dp"
             android:layout_height="100dp"
@@ -205,7 +232,7 @@
                     android:text="Atracciones: "
                     android:textColor="@color/black"/>
                 <TextView
-                    android:id="@+id/tv_atracciones_datos"
+                    android:id="@+id/tv_totalatracciones"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="XXX "
@@ -223,7 +250,7 @@
                     android:text="Otros: "
                     android:textColor="@color/black"/>
                 <TextView
-                    android:id="@+id/tv_otrosocio_datos"
+                    android:id="@+id/tv_totalotrosocio"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="XXX "
@@ -232,5 +259,14 @@
             </LinearLayout>
         </LinearLayout>
     </LinearLayout>
+    <Button
+        android:id="@+id/btnpdf"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Generar PDF"
+        android:layout_marginTop="20dp"
+        android:layout_gravity="center">
+
+    </Button>
 
 </LinearLayout>

@@ -81,7 +81,8 @@ class MainActivity : AppCompatActivity() {
                 return true
             }
             R.id.total -> {
-                Toast.makeText(this, "total", Toast.LENGTH_SHORT).show()
+                val intent = Intent(this,GastosTotalesActivity::class.java)
+                startActivity( intent, null)
                 return true
             }
         }
