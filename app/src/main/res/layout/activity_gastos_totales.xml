@@ -4,7 +4,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    tools:context=".Activities.GastosTotalesActivity"
+    tools:context=".Activities.GraphGastosTotalesActivity"
     android:orientation="vertical">
 
     <androidx.appcompat.widget.Toolbar
@@ -23,15 +23,15 @@
         android:layout_marginTop="20dp"
         android:orientation="vertical">
         <ImageView
-            android:layout_width="100dp"
-            android:layout_height="100dp"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
             android:src="@drawable/campervan">
         </ImageView>
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="GASTOS TOTALES"
-            android:textSize="24dp"
+            android:textSize="18dp"
             android:layout_marginTop="10dp"
             android:textColor="@color/black"
             android:textStyle="bold|italic"
@@ -42,231 +42,20 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="Kilómetros"
-            android:textSize="18dp"
+            android:textSize="14dp"
             android:layout_marginTop="5dp"
             android:textColor="@color/black"
             android:textStyle="bold|italic"
             android:gravity="center">
         </TextView>
     </LinearLayout>
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal"
-        android:padding="10dp"
-        android:layout_marginTop="20dp"
-        android:gravity="center_vertical"
-        android:background="@drawable/redondeobordes"
-        android:backgroundTint="@color/gastos2"
-        android:layout_marginLeft="10dp"
-        android:layout_marginRight="10dp">
-        <ImageView
-            android:layout_width="80dp"
-            android:layout_height="100dp"
-            android:src="@drawable/icogastos"/>
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="vertical"
-            android:layout_marginLeft="20dp">
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:orientation="horizontal"
-                android:layout_marginLeft="15dp">
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="Gasolina: "
-                    android:textColor="@color/black"/>
-                <TextView
-                    android:id="@+id/tv_totalgasolina"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="XXX "
-                    android:textColor="@color/black"
-                    android:layout_marginLeft="5dp"/>
-            </LinearLayout>
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:orientation="horizontal"
-                android:layout_marginLeft="15dp">
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="Peajes: "
-                    android:textColor="@color/black"/>
-                <TextView
-                    android:id="@+id/tv_totalpeajes"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="XXX "
-                    android:textColor="@color/black"
-                    android:layout_marginLeft="5dp"/>
-            </LinearLayout>
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:orientation="horizontal"
-                android:layout_marginLeft="15dp">
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="Pernocta: "
-                    android:textColor="@color/black"/>
-                <TextView
-                    android:id="@+id/tv_totalpernocta"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="XXX "
-                    android:textColor="@color/black"
-                    android:layout_marginLeft="5dp"/>
-            </LinearLayout>
-        </LinearLayout>
-    </LinearLayout>
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal"
-        android:padding="10dp"
-        android:layout_marginTop="10dp"
-        android:gravity="center_vertical"
-        android:background="@drawable/redondeobordes"
-        android:backgroundTint="@color/gastos3"
-        android:layout_marginLeft="10dp"
-        android:layout_marginRight="10dp">
-        <ImageView
-            android:layout_width="80dp"
-            android:layout_height="100dp"
-            android:src="@drawable/compras"/>
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="vertical"
-            android:layout_marginLeft="20dp">
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:orientation="horizontal"
-                android:layout_marginLeft="15dp">
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="Supermercado: "
-                    android:textColor="@color/black"/>
-                <TextView
-                    android:id="@+id/tv_totalsuper"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="XXX "
-                    android:textColor="@color/black"
-                    android:layout_marginLeft="5dp"/>
-            </LinearLayout>
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:orientation="horizontal"
-                android:layout_marginLeft="15dp">
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="Restaurantes: "
-                    android:textColor="@color/black"/>
-                <TextView
-                    android:id="@+id/tv_totalrtes"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="XXX "
-                    android:textColor="@color/black"
-                    android:layout_marginLeft="5dp"/>
-            </LinearLayout>
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:orientation="horizontal"
-                android:layout_marginLeft="15dp">
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="Otros: "
-                    android:textColor="@color/black"/>
-                <TextView
-                    android:id="@+id/tv_totalotros"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="XXX "
-                    android:textColor="@color/black"
-                    android:layout_marginLeft="5dp"/>
-            </LinearLayout>
-        </LinearLayout>
-    </LinearLayout>
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal"
-        android:padding="10dp"
-        android:layout_marginTop="10dp"
-        android:gravity="center_vertical"
-        android:background="@drawable/redondeobordes"
-        android:backgroundTint="@color/gastos4"
-        android:layout_marginLeft="10dp"
-        android:layout_marginRight="10dp">
-        <ImageView
-            android:layout_width="80dp"
-            android:layout_height="100dp"
-            android:src="@drawable/icoocio"/>
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="vertical"
-            android:layout_marginLeft="20dp">
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:orientation="horizontal"
-                android:layout_marginLeft="15dp">
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="Atracciones: "
-                    android:textColor="@color/black"/>
-                <TextView
-                    android:id="@+id/tv_totalatracciones"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="XXX "
-                    android:textColor="@color/black"
-                    android:layout_marginLeft="5dp"/>
-            </LinearLayout>
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:orientation="horizontal"
-                android:layout_marginLeft="15dp">
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="Otros: "
-                    android:textColor="@color/black"/>
-                <TextView
-                    android:id="@+id/tv_totalotrosocio"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="XXX "
-                    android:textColor="@color/black"
-                    android:layout_marginLeft="5dp"/>
-            </LinearLayout>
-        </LinearLayout>
-    </LinearLayout>
-    <Button
-        android:id="@+id/btnpdf"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Generar PDF"
-        android:layout_marginTop="20dp"
-        android:layout_gravity="center">
 
-    </Button>
+    <com.github.mikephil.charting.charts.PieChart
+        android:id="@+id/PieChart"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+    </com.github.mikephil.charting.charts.PieChart>
+
 
 </LinearLayout>

@@ -69,19 +69,22 @@ class MainActivity : AppCompatActivity() {
         when (item.itemId) {
 
             R.id.locomocion -> {
-                Toast.makeText(this, "locomocion", Toast.LENGTH_SHORT).show()
+                val intent = Intent(this,GraphLocomocionActivity::class.java)
+                startActivity( intent, null)
                 return true
             }
             R.id.ocio -> {
-                Toast.makeText(this, "ocio", Toast.LENGTH_SHORT).show()
+                val intent = Intent(this,GraphOcioActivity::class.java)
+                startActivity( intent, null)
                 return true
             }
             R.id.compras -> {
-                Toast.makeText(this, "compras", Toast.LENGTH_SHORT).show()
+                val intent = Intent(this,GraphAlimentacionActivity::class.java)
+                startActivity( intent, null)
                 return true
             }
             R.id.total -> {
-                val intent = Intent(this,GastosTotalesActivity::class.java)
+                val intent = Intent(this,GraphGastosTotalesActivity::class.java)
                 startActivity( intent, null)
                 return true
             }

@@ -14,8 +14,18 @@
         android:theme="@style/Theme.CuadernoRuta"
         tools:targetApi="31">
         <activity
-            android:name=".Activities.GastosTotalesActivity"
+            android:name=".Activities.GraphGastosTotalesActivity"
             android:exported="false" />
+        <activity
+            android:name=".Activities.GraphAlimentacionActivity"
+            android:exported="false" />
+        <activity
+            android:name=".Activities.GraphOcioActivity"
+            android:exported="false" />
+        <activity
+            android:name=".Activities.GraphLocomocionActivity"
+            android:exported="false" />
+
         <activity
             android:name=".Activities.EditActivity"
             android:exported="false" />
