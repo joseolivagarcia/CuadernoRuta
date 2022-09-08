@@ -1,10 +1,12 @@
 package com.example.cuadernoruta.Activities;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.Toolbar;
 import androidx.room.Room;
 
 import android.graphics.Color;
 import android.os.Bundle;
+import android.view.MenuItem;
 
 import com.example.cuadernoruta.BBDD.AppDataBase;
 import com.example.cuadernoruta.R;
@@ -29,6 +31,17 @@ public class GraphOcioActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_graph_ocio);
 
+        //para poner la flecha atras en el toolbar
+        //al final sobreescribo el metodo onOptionsItemSelected
+        /*
+         * para que la flecha sea blanca añado un item al style de themes
+         * con colorControlNormal*/
+        Toolbar toolbar = findViewById(R.id.toolbar);
+        setSupportActionBar(toolbar);
+
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        getSupportActionBar().setDisplayShowHomeEnabled(true);
+
         //inicializo la bbdd
         db = Room.databaseBuilder(this,AppDataBase.class,"paginasDb").allowMainThreadQueries().build();
 
@@ -48,9 +61,9 @@ public class GraphOcioActivity extends AppCompatActivity {
         barDataSet.setValueTextColor(Color.BLACK);
         barDataSet.setValueTextSize(16f);
 
-        barChart.getDescription().setText("Totales locomoción");
+        barChart.getDescription().setText("Totales ocio");
         barChart.setFitBars(true);
-        barChart.animateY(3000);
+        barChart.animateY(2000);
 
 
     }
@@ -66,6 +79,15 @@ public class GraphOcioActivity extends AppCompatActivity {
         barEntriesList.add(new BarEntry(2f,totalotrosocio));
 
 
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item){
+        // handle arrow click here
+        if (item.getItemId() == android.R.id.home)
+            finish(); // close this activity and return to preview activity (if there is any)
+
+        return super.onOptionsItemSelected(item);
     }
 
 }

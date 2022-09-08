@@ -1,6 +1,7 @@
 <resources xmlns:tools="http://schemas.android.com/tools">
     <!-- Base application theme. -->
     <style name="Theme.CuadernoRuta" parent="Theme.MaterialComponents.Light.NoActionBar">
+        <item name="colorControlNormal">@color/white</item>
         <!-- Primary brand color. -->
         <item name="colorPrimary">@color/gastos1</item>
         <item name="colorPrimaryVariant">@color/gastos1</item>

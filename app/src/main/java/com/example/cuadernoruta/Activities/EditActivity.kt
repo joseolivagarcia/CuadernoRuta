@@ -3,11 +3,13 @@ package com.example.cuadernoruta.Activities
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.view.MenuItem
 import android.widget.DatePicker
 import android.widget.EditText
 import android.widget.ImageView
 import android.widget.Toast
 import androidx.appcompat.app.AlertDialog
+import androidx.appcompat.widget.Toolbar
 import androidx.core.view.isVisible
 import androidx.room.Room
 import com.example.cuadernoruta.BBDD.AppDataBase
@@ -43,6 +45,16 @@ class EditActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_edit)
+
+        //para poner la flecha atras en el toolbar
+        //al final sobreescribo el metodo onOptionsItemSelected
+        /*
+        * para que la flecha sea blanca añado un item al style de themes
+        * con colorControlNormal*/
+        val toolbar: Toolbar = findViewById(R.id.toolbar)
+        setSupportActionBar(toolbar)
+        supportActionBar?.setDisplayHomeAsUpEnabled(true)
+        //supportActionBar?.setDisplayShowHomeEnabled(true)
 
         //recojo el id que me viene (si es que me viene)
         val paginaid = intent.extras?.getInt("idpagina")
@@ -264,5 +276,14 @@ class EditActivity : AppCompatActivity() {
         datoscoment = comentarios.text.toString()
 
     }
+
+    public override fun  onOptionsItemSelected(item: MenuItem): Boolean {
+        // handle arrow click here
+        if (item.getItemId() == android.R.id.home)
+            finish(); // close this activity and return to preview activity (if there is any)
+
+        return super.onOptionsItemSelected(item);
+    }
+
 
 }

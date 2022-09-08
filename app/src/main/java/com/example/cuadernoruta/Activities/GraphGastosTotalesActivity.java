@@ -1,10 +1,12 @@
 package com.example.cuadernoruta.Activities;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.Toolbar;
 import androidx.room.Room;
 
 import android.graphics.Color;
 import android.os.Bundle;
+import android.view.MenuItem;
 import android.widget.EditText;
 import android.widget.TextView;
 
@@ -31,6 +33,17 @@ public class GraphGastosTotalesActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_gastos_totales);
+
+        //para poner la flecha atras en el toolbar
+        //al final sobreescribo el metodo onOptionsItemSelected
+        /*
+         * para que la flecha sea blanca añado un item al style de themes
+         * con colorControlNormal*/
+        Toolbar toolbar = findViewById(R.id.toolbar);
+        setSupportActionBar(toolbar);
+
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        getSupportActionBar().setDisplayShowHomeEnabled(true);
 
         //inicializo la bbdd
         db = Room.databaseBuilder(this,AppDataBase.class,"paginasDb").allowMainThreadQueries().build();
@@ -79,7 +92,14 @@ public class GraphGastosTotalesActivity extends AppCompatActivity {
         pieEntriesList.add(new PieEntry(totalotroscompras,"Compras"));
         pieEntriesList.add(new PieEntry(totalatracc,"Atracc"));
         pieEntriesList.add(new PieEntry(totalotrosocio,"Ocio"));
+    }
 
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item){
+        // handle arrow click here
+        if (item.getItemId() == android.R.id.home)
+            finish(); // close this activity and return to preview activity (if there is any)
 
+        return super.onOptionsItemSelected(item);
     }
 }

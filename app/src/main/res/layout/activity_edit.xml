@@ -5,15 +5,23 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:padding="15dp"
     android:orientation="vertical"
     tools:context=".Activities.EditActivity">
+    <androidx.appcompat.widget.Toolbar
+        android:id="@+id/toolbar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/gastos1"
+        app:layout_constraintTop_toTopOf="parent"
+        app:title="Cuaderno de Ruta"
+        app:titleTextColor="@color/white" />
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:gravity="center"
         android:orientation="vertical"
+        android:layout_margin="10dp"
         android:background="@drawable/redondeobordes">
         <ImageView
             android:layout_width="50dp"
@@ -47,7 +55,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:gravity="center"
-        android:layout_marginTop="15dp"
+        android:layout_margin="10dp"
         android:background="@drawable/redondeobordes">
         <ImageView
             android:layout_width="40dp"
@@ -89,7 +97,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:gravity="center"
-        android:layout_marginTop="15dp"
+        android:layout_margin="10dp"
         android:background="@drawable/redondeobordes">
         <ImageView
             android:layout_width="40dp"
@@ -131,7 +139,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:gravity="center"
-        android:layout_marginTop="15dp"
+        android:layout_margin="10dp"
         android:background="@drawable/redondeobordes">
         <ImageView
             android:layout_width="40dp"
@@ -163,7 +171,7 @@
         android:layout_height="wrap_content"
         android:orientation="horizontal"
         android:padding="10dp"
-        android:layout_marginTop="15dp"
+       android:layout_margin="10dp"
         android:gravity="center_vertical"
         android:background="@drawable/redondeobordes">
         <ImageView
@@ -175,13 +183,7 @@
             android:layout_height="wrap_content"
             android:orientation="vertical"
             android:layout_marginLeft="10dp">
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:orientation="horizontal"
-                android:gravity="center"
-                android:layout_marginLeft="15dp">
-            </LinearLayout>
+
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -200,7 +202,6 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="20dp"
         android:gravity="center">
         <ImageView
             android:id="@+id/icoedit"
