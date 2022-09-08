@@ -3,14 +3,14 @@ package com.example.cuadernoruta.Adapters
 import android.content.Intent
 import android.view.View
 import android.widget.ImageView
+import android.widget.LinearLayout
 import android.widget.TextView
 import android.widget.Toast
 import androidx.appcompat.app.AlertDialog
 import androidx.core.content.ContextCompat.startActivity
 import androidx.recyclerview.widget.RecyclerView
 import androidx.room.Room
-import com.example.cuadernoruta.Activities.EditActivity
-import com.example.cuadernoruta.Activities.MainActivity
+import com.example.cuadernoruta.Activities.*
 import com.example.cuadernoruta.BBDD.AppDataBase
 import com.example.cuadernoruta.Models.Pagina
 import com.example.cuadernoruta.R
@@ -19,6 +19,9 @@ class PagViewHolder(view: View): RecyclerView.ViewHolder(view) {
 
     val icoedit = view.findViewById<ImageView>(R.id.icoedit)
     val icodelete = view.findViewById<ImageView>(R.id.icodelete)
+    val linearLocomocion = view.findViewById<LinearLayout>(R.id.idlocomocion)
+    val linearAlimen = view.findViewById<LinearLayout>(R.id.idaliment)
+    val linearOcio = view.findViewById<LinearLayout>(R.id.idocio)
 
     val fecha = view.findViewById<TextView>(R.id.tv_fecha_datos)
     val ruta = view.findViewById<TextView>(R.id.tv_ruta_datos)
@@ -65,6 +68,22 @@ class PagViewHolder(view: View): RecyclerView.ViewHolder(view) {
         }
 
          */
+
+        //Hago clicable cada seccion que mostrará las gráficas si las pulso
+        linearLocomocion.setOnClickListener {
+            val intent = Intent(gasolina.context, GraphLocomocionActivity::class.java)
+            gasolina.context.startActivity(intent,null)
+        }
+        linearAlimen.setOnClickListener {
+            val intent = Intent(gasolina.context, GraphAlimentacionActivity::class.java)
+            gasolina.context.startActivity(intent,null)
+        }
+        linearOcio.setOnClickListener {
+            val intent = Intent(gasolina.context, GraphOcioActivity::class.java)
+            gasolina.context.startActivity(intent,null)
+        }
+
+
 
         /*podria hacer clickable alguna parte concreta, por ejemplo el icono de editar y de eliminar
         En este caso como voy a editar una pagina ya creada, tengo que pasarle el id, asi en la actividad

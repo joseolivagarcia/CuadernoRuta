@@ -5,6 +5,8 @@ import androidx.room.Room;
 
 import android.graphics.Color;
 import android.os.Bundle;
+import android.widget.EditText;
+import android.widget.TextView;
 
 import com.example.cuadernoruta.BBDD.AppDataBase;
 import com.example.cuadernoruta.R;
@@ -32,6 +34,11 @@ public class GraphGastosTotalesActivity extends AppCompatActivity {
 
         //inicializo la bbdd
         db = Room.databaseBuilder(this,AppDataBase.class,"paginasDb").allowMainThreadQueries().build();
+        //obtengo y pongo los km totales que no iran en la grafica
+        Float kmtotales = db.paginaDao().gettotalkm();
+        TextView etkm = findViewById(R.id.tv_totalkm);
+        etkm.setText(kmtotales.toString() + " Km");
+
 
         PieChart pieChart = findViewById(R.id.PieChart);
         getPieChartEntries();
@@ -39,7 +46,7 @@ public class GraphGastosTotalesActivity extends AppCompatActivity {
         PieDataSet pieDataSet = new PieDataSet(pieEntriesList,"Gastos Totales");
         pieDataSet.setColors(ColorTemplate.COLORFUL_COLORS);
         pieDataSet.setValueTextColor(Color.BLACK);
-        pieDataSet.setValueTextSize(16f);
+        pieDataSet.setValueTextSize(11f);
 
         PieData pieData = new PieData(pieDataSet);
 
@@ -51,7 +58,7 @@ public class GraphGastosTotalesActivity extends AppCompatActivity {
 
     private void getPieChartEntries() {
         //obtengo los totales de cada categoria que vaya a mostrar en la grafica
-        Float totalkm = db.paginaDao().gettotalkm();
+        Float totalfinal = db.paginaDao().gettotal();
         Float totalgasolina = db.paginaDao().gettotalgasolina();
         Float totalpeajes = db.paginaDao().gettotalpeajes();
         Float totalpernocta = db.paginaDao().gettotalpernocta();
@@ -63,7 +70,7 @@ public class GraphGastosTotalesActivity extends AppCompatActivity {
         //inicializo el array y le añado los datos que necesito
         pieEntriesList = new ArrayList();
         //añado los datos pasandole los que he obtenido de la bbdd
-        pieEntriesList.add(new PieEntry(totalkm,"Km"));
+        pieEntriesList.add(new PieEntry(totalfinal,"TOTAL"));
         pieEntriesList.add(new PieEntry(totalgasolina,"Gas"));
         pieEntriesList.add(new PieEntry(totalpeajes,"Peajes"));
         pieEntriesList.add(new PieEntry(totalpernocta,"Pernocta"));

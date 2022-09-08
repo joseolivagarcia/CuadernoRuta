@@ -52,4 +52,7 @@ interface PaginaDao {
 
     @Query("SELECT SUM(otrosOcio) FROM Pagina")
     fun gettotalotrosocio(): Float
+
+    @Query("SELECT SUM(gasolina + peajes + pernocta + supermercado + restaurantes + otrosCompras + atracciones + otrosOcio) FROM Pagina")
+    fun gettotal(): Float
 }
