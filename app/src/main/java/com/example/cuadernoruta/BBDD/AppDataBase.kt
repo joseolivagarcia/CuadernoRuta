@@ -6,7 +6,7 @@ import com.example.cuadernoruta.Models.Pagina
 
 @Database(
     entities = [Pagina::class],
-    version = 1
+    version = 2
 )
 abstract class AppDataBase(): RoomDatabase() {
     abstract fun paginaDao(): PaginaDao

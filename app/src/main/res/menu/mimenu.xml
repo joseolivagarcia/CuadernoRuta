@@ -13,7 +13,6 @@
                 android:id="@+id/locomocion"
                 android:icon="@drawable/menucamper"
                 android:title="Locomocion">
-
             </item>
             <item
                 android:id="@+id/compras"
