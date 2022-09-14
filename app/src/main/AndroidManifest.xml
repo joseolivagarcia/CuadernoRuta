@@ -14,24 +14,34 @@
         android:theme="@style/Theme.CuadernoRuta"
         tools:targetApi="31">
         <activity
-            android:name=".Activities.GraphGastosTotalesActivity" android:screenOrientation="portrait"
-            android:exported="false" />
+            android:name=".Activities.MainActivity"
+            android:exported="false"
+            android:screenOrientation="portrait"/>
         <activity
-            android:name=".Activities.GraphAlimentacionActivity" android:screenOrientation="portrait"
-            android:exported="false" />
-        <activity
-            android:name=".Activities.GraphOcioActivity" android:screenOrientation="portrait"
-            android:exported="false" />
-        <activity
-            android:name=".Activities.GraphLocomocionActivity" android:screenOrientation="portrait"
-            android:exported="false" />
+            android:name=".Activities.GraphGastosTotalesActivity"
+            android:exported="false"
+            android:screenOrientation="portrait"/>
 
         <activity
-            android:name=".Activities.EditActivity" android:screenOrientation="portrait"
-            android:exported="false" />
+            android:name=".Activities.GraphAlimentacionActivity"
+            android:exported="false"
+            android:screenOrientation="portrait" />
         <activity
-            android:name=".Activities.MainActivity" android:screenOrientation="portrait"
-            android:exported="true">
+            android:name=".Activities.GraphOcioActivity"
+            android:exported="false"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".Activities.GraphLocomocionActivity"
+            android:exported="false"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".Activities.EditActivity"
+            android:exported="false"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".Activities.primeraActivity"
+            android:exported="true"
+            android:screenOrientation="portrait">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 

@@ -36,6 +36,7 @@ class MainActivity : AppCompatActivity() {
         //agregamos el toolbar del xml
         val toolbar: Toolbar = binding.toolbar
         setSupportActionBar(toolbar)
+        supportActionBar?.setDisplayShowHomeEnabled(true)
 
         //referencio la base de datos para poder usarla donde me interese
         val db: AppDataBase = Room.databaseBuilder(this,AppDataBase::class.java,"paginasDb").allowMainThreadQueries().build()
@@ -68,6 +69,12 @@ class MainActivity : AppCompatActivity() {
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
         when (item.itemId) {
 
+            android.R.id.home ->{
+                val intent = Intent(this,primeraActivity::class.java)
+                startActivity( intent, null)
+                return true
+            }
+
             R.id.locomocion -> {
                 val intent = Intent(this,GraphLocomocionActivity::class.java)
                 startActivity( intent, null)
@@ -92,6 +99,4 @@ class MainActivity : AppCompatActivity() {
         return super.onOptionsItemSelected(item)
     }
 
-    //Deactivate back on this Activity
-    override fun onBackPressed() {}
 }
