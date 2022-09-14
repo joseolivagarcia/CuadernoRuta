@@ -2,6 +2,7 @@ package com.example.cuadernoruta.BBDD
 
 import androidx.room.*
 import com.example.cuadernoruta.Models.Pagina
+import com.example.cuadernoruta.Models.Viajes
 
 @Dao
 interface PaginaDao {
@@ -55,4 +56,10 @@ interface PaginaDao {
 
     @Query("SELECT SUM(gasolina + peajes + pernocta + supermercado + restaurantes + otrosCompras + atracciones + otrosOcio) FROM Pagina")
     fun gettotal(): Float
+
+    //sentencias para obtener los viajes que hayamos añadido
+    @Query("Select * From Viajes")
+    fun getAllViajes(): MutableList<Viajes>
+    @Insert
+    fun insertViaje(viajes: Viajes)
 }

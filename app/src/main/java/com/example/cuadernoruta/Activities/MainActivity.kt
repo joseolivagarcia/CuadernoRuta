@@ -38,6 +38,10 @@ class MainActivity : AppCompatActivity() {
         setSupportActionBar(toolbar)
         supportActionBar?.setDisplayShowHomeEnabled(true)
 
+        //recojo el viaje que me viene de la primera activity
+        val viaje = intent.extras?.getInt("viaje")
+        Toast.makeText(this,"He recibido, $viaje",Toast.LENGTH_SHORT).show()
+
         //referencio la base de datos para poder usarla donde me interese
         val db: AppDataBase = Room.databaseBuilder(this,AppDataBase::class.java,"paginasDb").allowMainThreadQueries().build()
 
@@ -97,6 +101,13 @@ class MainActivity : AppCompatActivity() {
             }
         }
         return super.onOptionsItemSelected(item)
+    }
+
+    override fun onBackPressed() {
+        super.onBackPressed()
+        val intent = Intent(this,primeraActivity::class.java)
+        startActivity( intent, null)
+
     }
 
 }

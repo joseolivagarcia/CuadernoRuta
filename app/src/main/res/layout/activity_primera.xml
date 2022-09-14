@@ -51,7 +51,7 @@
         app:layout_constraintVertical_bias="0.1"/>
     <Spinner
         android:id="@+id/spinner"
-        android:layout_width="match_parent"
+        android:layout_width="300dp"
         android:layout_height="wrap_content"
         app:layout_constraintTop_toBottomOf="@id/tvcrear"
         app:layout_constraintBottom_toBottomOf="parent"
@@ -60,6 +60,19 @@
         app:layout_constraintVertical_bias="0.1"
         android:layout_marginRight="50dp"
         android:layout_marginLeft="50dp"/>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="App desarrollada por José Oliva.  jose@joseoliva.com"
+        android:textSize="12dp"
+        android:textStyle="italic"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.525"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/spinner"
+        app:layout_constraintVertical_bias="0.98" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>
