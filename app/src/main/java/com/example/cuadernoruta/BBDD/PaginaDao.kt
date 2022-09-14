@@ -22,6 +22,10 @@ interface PaginaDao {
     @Query("SELECT * FROM Pagina WHERE id = :id")
     fun getById(id: Int): Pagina
 
+    //funcion para filtrar por el numero de viaje (el del spinner)
+    @Query("Select * from Pagina where viaje = :num")
+    fun getAllPaginasByNum(num: Int): MutableList<Pagina>
+
     //para actualizar una pagina (actualiza la pagina que recibe por parametro
     @Update
     fun update(pagina: Pagina)

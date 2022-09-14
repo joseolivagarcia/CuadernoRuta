@@ -29,6 +29,7 @@ class EditActivity : AppCompatActivity() {
     lateinit var atracciones: EditText
     lateinit var otrosocio: EditText
     lateinit var comentarios: EditText
+    var viajerecibido: Int = 0
 
     lateinit var datosruta: String
     lateinit var datoskm: String
@@ -46,6 +47,9 @@ class EditActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_edit)
 
+        //recojo el viaje, posicion del spinner que me viene de main activity
+        var numviaje = intent.extras!!.getInt("numviaje")
+        Toast.makeText(this,"He recibido ${numviaje.toString()}",Toast.LENGTH_SHORT).show()
         //para poner la flecha atras en el toolbar
         //al final sobreescribo el metodo onOptionsItemSelected
         /*
@@ -58,7 +62,7 @@ class EditActivity : AppCompatActivity() {
 
         //recojo el id que me viene (si es que me viene)
         val paginaid = intent.extras?.getInt("idpagina")
-        //Toast.makeText(this,"${paginaid.toString()}",Toast.LENGTH_SHORT).show()
+        Toast.makeText(this,"${paginaid.toString()}",Toast.LENGTH_SHORT).show()
 
         //referencio la base de datos para poder usarla donde me interese
         val db: AppDataBase = Room.databaseBuilder(this,AppDataBase::class.java,"paginasDb").allowMainThreadQueries().build()
@@ -82,26 +86,28 @@ class EditActivity : AppCompatActivity() {
 
         //obtengo de la bbdd la pagina que tiene el id que recibo y relleno los campos con sus datos
         val paginaRecibida = paginaid?.let { db.paginaDao().getById(it) }
-        if(paginaid != null){
+        if(paginaid != 0){
             btnguardar.isEnabled = false
             //si el id no es nulo, es decir que si traigo una pagina
-            if(paginaid >= 0) {
+            if (paginaid != null) {
+                if(paginaid >= 0) {
 
-                if (paginaRecibida != null) {
-                    ruta.setText(paginaRecibida.ruta)
-                    kilometros.setText(paginaRecibida.kilometros.toString())
-                    gasolina.setText(paginaRecibida.gasolina.toString())
-                    peajes.setText(paginaRecibida.peajes.toString())
-                    pernocta.setText(paginaRecibida.pernocta.toString())
-                    supermercado.setText(paginaRecibida.supermercado.toString())
-                    restaurantes.setText(paginaRecibida.restaurantes.toString())
-                    otroscompras.setText(paginaRecibida.otrosCompras.toString())
-                    atracciones.setText(paginaRecibida.atracciones.toString())
-                    atracciones.setText(paginaRecibida.atracciones.toString())
-                    otrosocio.setText(paginaRecibida.otrosOcio.toString())
-                    comentarios.setText(paginaRecibida.comentarios)
+                    if (paginaRecibida != null) {
+                        ruta.setText(paginaRecibida.ruta)
+                        kilometros.setText(paginaRecibida.kilometros.toString())
+                        gasolina.setText(paginaRecibida.gasolina.toString())
+                        peajes.setText(paginaRecibida.peajes.toString())
+                        pernocta.setText(paginaRecibida.pernocta.toString())
+                        supermercado.setText(paginaRecibida.supermercado.toString())
+                        restaurantes.setText(paginaRecibida.restaurantes.toString())
+                        otroscompras.setText(paginaRecibida.otrosCompras.toString())
+                        atracciones.setText(paginaRecibida.atracciones.toString())
+                        atracciones.setText(paginaRecibida.atracciones.toString())
+                        otrosocio.setText(paginaRecibida.otrosOcio.toString())
+                        comentarios.setText(paginaRecibida.comentarios)
+                    }
                 }
-                }
+            }
             }else {
             btneditar.isEnabled = false //si estoy para crear una pagina nueva este boton no tendra sentido (solo el de guardar)
         }
@@ -164,7 +170,8 @@ class EditActivity : AppCompatActivity() {
                 datosotroscompras.toFloat(),
                 datosatracc.toFloat(),
                 datosotrosocio.toFloat(),
-                datoscoment
+                datoscoment,
+                numviaje
             )
 
             db.paginaDao().insert(newPagina)
@@ -242,7 +249,8 @@ class EditActivity : AppCompatActivity() {
                         datosotroscompras.toFloat(),
                         datosatracc.toFloat(),
                         datosotrosocio.toFloat(),
-                        datoscoment) }
+                        datoscoment,
+                        numviaje) }
 
                     if (editPagina != null) {
                         db.paginaDao().update(editPagina)
