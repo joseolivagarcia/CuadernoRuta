@@ -31,35 +31,35 @@ interface PaginaDao {
     fun update(pagina: Pagina)
 
     //creo las funciones que suman los datos de cada columna
-    @Query("SELECT SUM(kilometros) FROM Pagina")
-    fun gettotalkm(): Float
+    @Query("SELECT SUM(kilometros) FROM Pagina Where viaje = :viaje")
+    fun gettotalkm(viaje: Int): Float
 
-    @Query("SELECT SUM(gasolina) FROM Pagina")
-    fun gettotalgasolina(): Float
+    @Query("SELECT SUM(gasolina) FROM Pagina Where viaje = :viaje")
+    fun gettotalgasolina(viaje: Int): Float
 
-    @Query("SELECT SUM(peajes) FROM Pagina")
-    fun gettotalpeajes(): Float
+    @Query("SELECT SUM(peajes) FROM Pagina Where viaje = :viaje")
+    fun gettotalpeajes(viaje: Int): Float
 
-    @Query("SELECT SUM(pernocta) FROM Pagina")
-    fun gettotalpernocta(): Float
+    @Query("SELECT SUM(pernocta) FROM Pagina Where viaje = :viaje")
+    fun gettotalpernocta(viaje: Int): Float
 
-    @Query("SELECT SUM(supermercado) FROM Pagina")
-    fun gettotalsuper(): Float
+    @Query("SELECT SUM(supermercado) FROM Pagina Where viaje = :viaje")
+    fun gettotalsuper(viaje: Int): Float
 
-    @Query("SELECT SUM(restaurantes) FROM Pagina")
-    fun gettotalrtes(): Float
+    @Query("SELECT SUM(restaurantes) FROM Pagina Where viaje = :viaje")
+    fun gettotalrtes(viaje: Int): Float
 
-    @Query("SELECT SUM(otrosCompras) FROM Pagina")
-    fun gettotalotroscompras(): Float
+    @Query("SELECT SUM(otrosCompras) FROM Pagina Where viaje = :viaje")
+    fun gettotalotroscompras(viaje: Int): Float
 
-    @Query("SELECT SUM(atracciones) FROM Pagina")
-    fun gettotalatracciones(): Float
+    @Query("SELECT SUM(atracciones) FROM Pagina Where viaje = :viaje")
+    fun gettotalatracciones(viaje: Int): Float
 
-    @Query("SELECT SUM(otrosOcio) FROM Pagina")
-    fun gettotalotrosocio(): Float
+    @Query("SELECT SUM(otrosOcio) FROM Pagina Where viaje = :viaje")
+    fun gettotalotrosocio(viaje: Int): Float
 
-    @Query("SELECT SUM(gasolina + peajes + pernocta + supermercado + restaurantes + otrosCompras + atracciones + otrosOcio) FROM Pagina")
-    fun gettotal(): Float
+    @Query("SELECT SUM(gasolina + peajes + pernocta + supermercado + restaurantes + otrosCompras + atracciones + otrosOcio) FROM Pagina Where viaje = :viaje")
+    fun gettotal(viaje: Int): Float
 
     //sentencias para obtener los viajes que hayamos añadido
     @Query("Select * From Viajes")

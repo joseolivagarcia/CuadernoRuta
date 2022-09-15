@@ -27,6 +27,9 @@ class MainActivity : AppCompatActivity() {
     //creo una var de tipo mutableList para guardar todas las paginas que vaya creando
     var listadoPaginas: MutableList<Pagina> = mutableListOf()
 
+    //recojo el viaje que me viene de la primera activity
+    var numviaje = 0
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         //inicializo binding para que funcione correctamente
@@ -40,6 +43,7 @@ class MainActivity : AppCompatActivity() {
 
         //recojo el viaje que me viene de la primera activity
         val viaje = intent.extras!!.getInt("viaje")
+        numviaje = viaje
         Toast.makeText(this,"He recibido, $viaje",Toast.LENGTH_SHORT).show()
 
         //referencio la base de datos para poder usarla donde me interese
@@ -82,21 +86,25 @@ class MainActivity : AppCompatActivity() {
 
             R.id.locomocion -> {
                 val intent = Intent(this,GraphLocomocionActivity::class.java)
-                startActivity( intent, null)
+                intent.putExtra("num", numviaje)
+                startActivity( intent)
                 return true
             }
             R.id.ocio -> {
                 val intent = Intent(this,GraphOcioActivity::class.java)
+                intent.putExtra("num", numviaje)
                 startActivity( intent, null)
                 return true
             }
             R.id.compras -> {
                 val intent = Intent(this,GraphAlimentacionActivity::class.java)
+                intent.putExtra("num", numviaje)
                 startActivity( intent, null)
                 return true
             }
             R.id.total -> {
                 val intent = Intent(this,GraphGastosTotalesActivity::class.java)
+                intent.putExtra("num", numviaje)
                 startActivity( intent, null)
                 return true
             }

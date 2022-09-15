@@ -7,6 +7,7 @@ import androidx.room.Room;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.view.MenuItem;
+import android.widget.Toast;
 
 import com.example.cuadernoruta.BBDD.AppDataBase;
 import com.example.cuadernoruta.R;
@@ -42,13 +43,17 @@ public class GraphLocomocionActivity extends AppCompatActivity {
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         getSupportActionBar().setDisplayShowHomeEnabled(true);
 
+        //recojo el viaje que me viene de la primera activity
+        int viaje = getIntent().getExtras().getInt("num");
+        Toast.makeText(this, "Recibo " + viaje, Toast.LENGTH_SHORT).show();
+
         //inicializo la bbdd
         db = Room.databaseBuilder(this,AppDataBase.class,"paginasDb").allowMainThreadQueries().build();
 
         //referenciamos la vista
         BarChart barChart = findViewById(R.id.idbarchart);
         //llamo al metodo del que obtendre los datos antes de rellenar las barras de la grafica
-        getBarChartEntries();
+        getBarChartEntries(viaje); //llamo a la funcion y le paso el numero de viaje para filtrar por viaje
         //creo un bar data set
         BarDataSet barDataSet = new BarDataSet(barEntriesList,"1.Km 2.Gasolina 3.Peajes 4.Pernoctas");
         //necesito un bardata y pasarle el bardataset
@@ -68,12 +73,12 @@ public class GraphLocomocionActivity extends AppCompatActivity {
 
     }
 
-    private void getBarChartEntries() {
+    private void getBarChartEntries(int viaje) {
         //obtengo los totales de cada categoria que vaya a mostrar en la grafica
-        Float totalkm = db.paginaDao().gettotalkm();
-        Float totalgasolina = db.paginaDao().gettotalgasolina();
-        Float totalpeajes = db.paginaDao().gettotalpeajes();
-        Float totalpernocta = db.paginaDao().gettotalpernocta();
+        Float totalkm = db.paginaDao().gettotalkm(viaje);
+        Float totalgasolina = db.paginaDao().gettotalgasolina(viaje);
+        Float totalpeajes = db.paginaDao().gettotalpeajes(viaje);
+        Float totalpernocta = db.paginaDao().gettotalpernocta(viaje);
         //inicializo el array y le añado los datos que necesito
         barEntriesList = new ArrayList();
         //añado los datos pasandole los que he obtenido de la bbdd

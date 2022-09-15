@@ -72,14 +72,17 @@ class PagViewHolder(view: View): RecyclerView.ViewHolder(view) {
         //Hago clicable cada seccion que mostrará las gráficas si las pulso
         linearLocomocion.setOnClickListener {
             val intent = Intent(gasolina.context, GraphLocomocionActivity::class.java)
+            intent.putExtra("num", pagina.viaje)
             gasolina.context.startActivity(intent,null)
         }
         linearAlimen.setOnClickListener {
             val intent = Intent(gasolina.context, GraphAlimentacionActivity::class.java)
+            intent.putExtra("num", pagina.viaje)
             gasolina.context.startActivity(intent,null)
         }
         linearOcio.setOnClickListener {
             val intent = Intent(gasolina.context, GraphOcioActivity::class.java)
+            intent.putExtra("num", pagina.viaje)
             gasolina.context.startActivity(intent,null)
         }
 
@@ -92,6 +95,7 @@ class PagViewHolder(view: View): RecyclerView.ViewHolder(view) {
         icoedit.setOnClickListener{
             val intent = Intent(gasolina.context, EditActivity::class.java)
             intent.putExtra("idpagina", pagina.id)
+            intent.putExtra("viajeedit", pagina.viaje)
             gasolina.context.startActivity(intent,null)
 
 

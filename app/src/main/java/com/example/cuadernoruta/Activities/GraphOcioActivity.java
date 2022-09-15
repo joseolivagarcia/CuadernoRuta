@@ -42,13 +42,16 @@ public class GraphOcioActivity extends AppCompatActivity {
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         getSupportActionBar().setDisplayShowHomeEnabled(true);
 
+        //recojo el viaje que me viene de la primera activity
+        int viaje = getIntent().getExtras().getInt("num");
+
         //inicializo la bbdd
         db = Room.databaseBuilder(this,AppDataBase.class,"paginasDb").allowMainThreadQueries().build();
 
         //referenciamos la vista
         BarChart barChart = findViewById(R.id.idbarchartocio);
         //llamo al metodo del que obtendre los datos antes de rellenar las barras de la grafica
-        getBarChartEntries();
+        getBarChartEntries(viaje);
         //creo un bar data set
         BarDataSet barDataSet = new BarDataSet(barEntriesList,"1.Atracciones 2.Otros");
         //necesito un bardata y pasarle el bardataset
@@ -68,10 +71,10 @@ public class GraphOcioActivity extends AppCompatActivity {
 
     }
 
-    private void getBarChartEntries() {
+    private void getBarChartEntries(int viaje) {
         //obtengo los totales de cada categoria que vaya a mostrar en la grafica
-        Float totalatracc = db.paginaDao().gettotalatracciones();
-        Float totalotrosocio = db.paginaDao().gettotalotrosocio();
+        Float totalatracc = db.paginaDao().gettotalatracciones(viaje);
+        Float totalotrosocio = db.paginaDao().gettotalotrosocio(viaje);
         //inicializo el array y le añado los datos que necesito
         barEntriesList = new ArrayList();
         //añado los datos pasandole los que he obtenido de la bbdd

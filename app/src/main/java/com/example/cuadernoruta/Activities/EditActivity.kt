@@ -50,6 +50,10 @@ class EditActivity : AppCompatActivity() {
         //recojo el viaje, posicion del spinner que me viene de main activity
         var numviaje = intent.extras!!.getInt("numviaje")
         Toast.makeText(this,"He recibido ${numviaje.toString()}",Toast.LENGTH_SHORT).show()
+        //tambien recojo el que me viene del pageviewholder para cuando edite una pagina
+        var numviajeedit = intent.extras!!.getInt("viajeedit")
+        Toast.makeText(this,"He recibido ${numviajeedit.toString()}",Toast.LENGTH_SHORT).show()
+
         //para poner la flecha atras en el toolbar
         //al final sobreescribo el metodo onOptionsItemSelected
         /*
@@ -250,7 +254,7 @@ class EditActivity : AppCompatActivity() {
                         datosatracc.toFloat(),
                         datosotrosocio.toFloat(),
                         datoscoment,
-                        numviaje) }
+                        numviajeedit) }
 
                     if (editPagina != null) {
                         db.paginaDao().update(editPagina)

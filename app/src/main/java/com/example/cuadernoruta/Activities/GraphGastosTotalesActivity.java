@@ -45,16 +45,19 @@ public class GraphGastosTotalesActivity extends AppCompatActivity {
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         getSupportActionBar().setDisplayShowHomeEnabled(true);
 
+        //recojo el viaje que me viene de la primera activity
+        int viaje = getIntent().getExtras().getInt("num");
+
         //inicializo la bbdd
         db = Room.databaseBuilder(this,AppDataBase.class,"paginasDb").allowMainThreadQueries().build();
         //obtengo y pongo los km totales que no iran en la grafica
-        Float kmtotales = db.paginaDao().gettotalkm();
+        Float kmtotales = db.paginaDao().gettotalkm(viaje);
         TextView etkm = findViewById(R.id.tv_totalkm);
         etkm.setText(kmtotales.toString() + " Km");
 
 
         PieChart pieChart = findViewById(R.id.PieChart);
-        getPieChartEntries();
+        getPieChartEntries(viaje);
 
         PieDataSet pieDataSet = new PieDataSet(pieEntriesList,"Gastos Totales");
         pieDataSet.setColors(ColorTemplate.COLORFUL_COLORS);
@@ -69,17 +72,17 @@ public class GraphGastosTotalesActivity extends AppCompatActivity {
         pieChart.animate();
     }
 
-    private void getPieChartEntries() {
+    private void getPieChartEntries(int viaje) {
         //obtengo los totales de cada categoria que vaya a mostrar en la grafica
-        Float totalfinal = db.paginaDao().gettotal();
-        Float totalgasolina = db.paginaDao().gettotalgasolina();
-        Float totalpeajes = db.paginaDao().gettotalpeajes();
-        Float totalpernocta = db.paginaDao().gettotalpernocta();
-        Float totalsuper = db.paginaDao().gettotalsuper();
-        Float totalrtes = db.paginaDao().gettotalrtes();
-        Float totalotroscompras = db.paginaDao().gettotalotroscompras();
-        Float totalatracc = db.paginaDao().gettotalatracciones();
-        Float totalotrosocio = db.paginaDao().gettotalotrosocio();
+        Float totalfinal = db.paginaDao().gettotal(viaje);
+        Float totalgasolina = db.paginaDao().gettotalgasolina(viaje);
+        Float totalpeajes = db.paginaDao().gettotalpeajes(viaje);
+        Float totalpernocta = db.paginaDao().gettotalpernocta(viaje);
+        Float totalsuper = db.paginaDao().gettotalsuper(viaje);
+        Float totalrtes = db.paginaDao().gettotalrtes(viaje);
+        Float totalotroscompras = db.paginaDao().gettotalotroscompras(viaje);
+        Float totalatracc = db.paginaDao().gettotalatracciones(viaje);
+        Float totalotrosocio = db.paginaDao().gettotalotrosocio(viaje);
         //inicializo el array y le añado los datos que necesito
         pieEntriesList = new ArrayList();
         //añado los datos pasandole los que he obtenido de la bbdd
