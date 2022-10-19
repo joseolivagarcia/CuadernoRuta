@@ -23,6 +23,6 @@ data class Pagina(
     val atracciones: Float,
     val otrosOcio: Float,
     val comentarios: String,
-    val viaje: Int
-
+    val viaje: Int,
+    val nomviaje: String
 )

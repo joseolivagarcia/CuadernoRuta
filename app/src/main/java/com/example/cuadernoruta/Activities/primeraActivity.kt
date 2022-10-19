@@ -21,11 +21,15 @@ class primeraActivity : AppCompatActivity() {
     lateinit var binding: ActivityPrimeraBinding
     lateinit var viewmodel: PrimeraViewModel //referencio mi ViewModel
     val listaViajesSp: ArrayList<String> = arrayListOf()
+    lateinit var nomviaje: String
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivityPrimeraBinding.inflate(layoutInflater)
         setContentView(binding.root)
+
+        //referencio la base de datos para poder usarla donde me interese
+        val db: AppDataBase = Room.databaseBuilder(this,AppDataBase::class.java,"paginasDb").allowMainThreadQueries().build()
 
         viewmodel =
             ViewModelProvider(this).get(PrimeraViewModel::class.java) //inicializo mi viewmodel
@@ -38,8 +42,7 @@ class primeraActivity : AppCompatActivity() {
             //creo un alert dialog para introducir el viaje que queramos crear y añadir a la lista
             val inflater = layoutInflater //para pasarle el layout al dialog
             val dialoglayout = inflater.inflate(R.layout.dailog, null) //paso el xml al inflater
-            val textodialog =
-                dialoglayout.findViewById<EditText>(R.id.ettituloviaje) //para poder capturar el texto que escribamos
+            val textodialog = dialoglayout.findViewById<EditText>(R.id.ettituloviaje) //para poder capturar el texto que escribamos
             val buildialog = AlertDialog.Builder(this) //creamos el alertdialog
             buildialog.setTitle("Crear Viaje")
             buildialog.setView(dialoglayout) //pasamos el layout al alertdialog
@@ -47,7 +50,9 @@ class primeraActivity : AppCompatActivity() {
             buildialog.setPositiveButton("Añadir") { dialog, _ ->
                 dialog.dismiss()
                 //añadimos el viaje a la bbdd
-                val newViaje = Viajes(0, textodialog.text.toString())
+                nomviaje = textodialog.text.toString()
+                val newViaje = Viajes(0, nomviaje)
+                Toast.makeText(this,"Has añadido $nomviaje",Toast.LENGTH_SHORT).show()
                 viewmodel.guardarViaje(newViaje)
                 spinner.setSelection(0)
             }
@@ -66,17 +71,19 @@ class primeraActivity : AppCompatActivity() {
             //creo un alert dialog para introducir el viaje que queramos eliminar de la lista
             val inflater = layoutInflater //para pasarle el layout al dialog
             val dialoglayout = inflater.inflate(R.layout.dailog, null) //paso el xml al inflater
-            val textodialog =
-                dialoglayout.findViewById<EditText>(R.id.ettituloviaje) //para poder capturar el texto que escribamos
+            val textodialog = dialoglayout.findViewById<EditText>(R.id.ettituloviaje) //para poder capturar el texto que escribamos
             val buildialog = AlertDialog.Builder(this) //creamos el alertdialog
             buildialog.setTitle("Eliminar Viaje")
             buildialog.setView(dialoglayout) //pasamos el layout al alertdialog
             //creamos los botones del alert
             buildialog.setPositiveButton("Eliminar") { dialog, _ ->
                 dialog.dismiss()
+                nomviaje = textodialog.text.toString()
+                Toast.makeText(this,"Has borrado $nomviaje",Toast.LENGTH_SHORT).show()
+                //eliminamos todas las paginas de este viaje
+                db.paginaDao().deleteAllPaginasByNomviaje(nomviaje)
                 //eliminamos el viaje a la bbdd
-                viewmodel.borrarViaje(textodialog.text.toString())
-                Toast.makeText(this,"Has borrado ${textodialog.text}",Toast.LENGTH_SHORT).show()
+                viewmodel.borrarViaje(nomviaje)
                 spinner.setSelection(0)
             }
             buildialog.setNegativeButton("Cancelar") { dialog, _ ->
@@ -105,8 +112,10 @@ class primeraActivity : AppCompatActivity() {
         spinner.onItemSelectedListener = object : AdapterView.OnItemSelectedListener {
             override fun onItemSelected(p0: AdapterView<*>?, p1: View?, position: Int, p3: Long) {
                 if (position != 0) {
+                    nomviaje = listaViajesSp.get(position)
                     val intent = Intent(applicationContext, MainActivity::class.java)
                     intent.putExtra("viaje", position)
+                    intent.putExtra("nomviaje", nomviaje)
                     startActivity(intent)
                 }
             }

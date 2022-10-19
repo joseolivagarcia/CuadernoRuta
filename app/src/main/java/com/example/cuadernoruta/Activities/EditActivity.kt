@@ -49,6 +49,7 @@ class EditActivity : AppCompatActivity() {
 
         //recojo el viaje, posicion del spinner que me viene de main activity
         var numviaje = intent.extras!!.getInt("numviaje")
+        var nomviaje = intent.extras!!.getString("nomViaje")
 
         //tambien recojo el que me viene del pageviewholder para cuando edite una pagina
         var numviajeedit = intent.extras!!.getInt("viajeedit")
@@ -178,7 +179,8 @@ class EditActivity : AppCompatActivity() {
                 datosatracc.toFloat(),
                 datosotrosocio.toFloat(),
                 datoscoment,
-                numviaje
+                numviaje,
+                nomviaje!!
             )
 
             db.paginaDao().insert(newPagina)
@@ -256,7 +258,8 @@ class EditActivity : AppCompatActivity() {
                             datosatracc.toFloat(),
                             datosotrosocio.toFloat(),
                             datoscoment,
-                            numviajeedit
+                            numviajeedit,
+                            nomviaje!!
                         )
                     }
 

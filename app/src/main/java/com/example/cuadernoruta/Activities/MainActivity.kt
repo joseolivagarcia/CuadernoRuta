@@ -29,6 +29,7 @@ class MainActivity : AppCompatActivity() {
 
     //recojo el viaje que me viene de la primera activity
     var numviaje = 0
+    var nomviaje = "Viaje"
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -44,19 +45,22 @@ class MainActivity : AppCompatActivity() {
         //recojo el viaje que me viene de la primera activity
         val viaje = intent.extras!!.getInt("viaje")
         numviaje = viaje
-
+        val nombreViaje = intent.extras!!.getString("nomviaje")
+        nomviaje = nombreViaje!!
 
         //referencio la base de datos para poder usarla donde me interese
         val db: AppDataBase = Room.databaseBuilder(this,AppDataBase::class.java,"paginasDb").allowMainThreadQueries().build()
 
         //inicializo lista en la que guardo lo que recoja de la base de datos
-        listadoPaginas = db.paginaDao().getAllPaginasByNum(viaje)
+        //listadoPaginas = db.paginaDao().getAllPaginasByNum(viaje)
+        listadoPaginas = db.paginaDao().getAllPaginasByNomviaje(nomviaje)
         //referencio el boton + y lo inicializo
         val fab = binding.fab
         fab.setOnClickListener {
             //lo que hace el boton es llavarnos a la actividad de editar(sin datos) para crear una nueva pagina
             val intent = Intent(this,EditActivity::class.java)
             intent.putExtra("numviaje", viaje)
+            intent.putExtra("nomViaje", nomviaje)
             startActivity(intent)
         }
 

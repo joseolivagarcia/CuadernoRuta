@@ -15,6 +15,10 @@ interface PaginaDao {
     @Delete
     fun delete(pagina: Pagina)
 
+    //funcion para eliminar todas las paginas de un viaje
+    @Query("Delete From Pagina Where nomviaje = :nomviaje")
+    fun deleteAllPaginasByNomviaje(nomviaje: String)
+
     //hago lo mismo para un insert, al recibir una List puedo insertar una pagina o varias a la vez
     @Insert
     fun insert(pagina: Pagina)
@@ -27,11 +31,16 @@ interface PaginaDao {
     @Query("Select * from Pagina where viaje = :num")
     fun getAllPaginasByNum(num: Int): MutableList<Pagina>
 
+    //funcion para filtrar los viajes por nombre de viaje
+    @Query("Select * from Pagina Where nomviaje = :nomviaje")
+    fun getAllPaginasByNomviaje(nomviaje: String): MutableList<Pagina>
+
     //para actualizar una pagina (actualiza la pagina que recibe por parametro
     @Update
     fun update(pagina: Pagina)
 
     //creo las funciones que suman los datos de cada columna
+
     @Query("SELECT SUM(kilometros) FROM Pagina Where viaje = :viaje")
     fun gettotalkm(viaje: Int): Float
 
