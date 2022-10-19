@@ -16,7 +16,7 @@ import com.example.cuadernoruta.data.ViajesAppDb.Companion.db
 import com.example.cuadernoruta.databinding.ActivityPrimeraBinding
 import com.example.cuadernoruta.viewmodel.PrimeraViewModel
 
-class primeraActivity : AppCompatActivity(){
+class primeraActivity : AppCompatActivity() {
 
     lateinit var binding: ActivityPrimeraBinding
     lateinit var viewmodel: PrimeraViewModel //referencio mi ViewModel
@@ -27,30 +27,33 @@ class primeraActivity : AppCompatActivity(){
         binding = ActivityPrimeraBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
-        viewmodel = ViewModelProvider(this).get(PrimeraViewModel::class.java) //inicializo mi viewmodel
+        viewmodel =
+            ViewModelProvider(this).get(PrimeraViewModel::class.java) //inicializo mi viewmodel
         val spinner = binding.spinner
-        val adapter = ArrayAdapter<String>(this,android.R.layout.simple_list_item_activated_1,listaViajesSp)
+        val adapter =
+            ArrayAdapter<String>(this, android.R.layout.simple_list_item_activated_1, listaViajesSp)
         spinner.adapter = adapter
 
         val btncrear = binding.tvcrear
         btncrear.setOnClickListener {
             //creo un alert dialog para introducir el viaje que queramos crear y añadir a la lista
             val inflater = layoutInflater //para pasarle el layout al dialog
-            val dialoglayout = inflater.inflate(R.layout.dailog,null) //paso el xml al inflater
-            val textodialog = dialoglayout.findViewById<EditText>(R.id.ettituloviaje) //para poder capturar el texto que escribamos
+            val dialoglayout = inflater.inflate(R.layout.dailog, null) //paso el xml al inflater
+            val textodialog =
+                dialoglayout.findViewById<EditText>(R.id.ettituloviaje) //para poder capturar el texto que escribamos
             val buildialog = AlertDialog.Builder(this) //creamos el alertdialog
             buildialog.setTitle("Viajes")
             buildialog.setView(dialoglayout) //pasamos el layout al alertdialog
             //creamos los botones del alert
-            buildialog.setPositiveButton("Añadir"){
-                    dialog, _ -> dialog.dismiss()
+            buildialog.setPositiveButton("Añadir") { dialog, _ ->
+                dialog.dismiss()
                 //añadimos el viaje a la bbdd
-                val newViaje = Viajes(0,textodialog.text.toString())
+                val newViaje = Viajes(0, textodialog.text.toString())
                 viewmodel.guardarViaje(newViaje)
                 spinner.setSelection(0)
             }
-            buildialog.setNegativeButton("Cancelar"){
-                    dialog, _ -> dialog.dismiss()
+            buildialog.setNegativeButton("Cancelar") { dialog, _ ->
+                dialog.dismiss()
             }
             buildialog.show() //mostramos el alertdialog
 
@@ -60,33 +63,31 @@ class primeraActivity : AppCompatActivity(){
              */
         }
 
-        viewmodel.viajesList.observe(this, Observer { list ->list?.let{
-            //actualizamos la lista
-            listaViajesSp.clear()
-            listaViajesSp.add(0,"Viajes")
-            for (v in list){
-                listaViajesSp.add(v.nomViaje)
-                adapter.notifyDataSetChanged()
+        viewmodel.viajesList.observe(this, Observer { list ->
+            list?.let {
+                //actualizamos la lista
+                listaViajesSp.clear()
+                listaViajesSp.add(0, "Viajes")
+                for (v in list) {
+                    listaViajesSp.add(v.nomViaje)
+                    adapter.notifyDataSetChanged()
+                }
             }
-        }
         })
 
         spinner.onItemSelectedListener = object : AdapterView.OnItemSelectedListener {
             override fun onItemSelected(p0: AdapterView<*>?, p1: View?, position: Int, p3: Long) {
-                if(position != 0) {
+                if (position != 0) {
                     val intent = Intent(applicationContext, MainActivity::class.java)
                     intent.putExtra("viaje", position)
                     startActivity(intent)
                 }
-                Toast.makeText(applicationContext,"Has seleccionado $position ${listaViajesSp.get(position)}", Toast.LENGTH_SHORT).show()
             }
 
             override fun onNothingSelected(p0: AdapterView<*>?) {
                 TODO("Not yet implemented")
             }
-
         }
-
     }
 
     //Deactivate back on this Activity

@@ -44,14 +44,13 @@ class MainActivity : AppCompatActivity() {
         //recojo el viaje que me viene de la primera activity
         val viaje = intent.extras!!.getInt("viaje")
         numviaje = viaje
-        Toast.makeText(this,"He recibido, $viaje",Toast.LENGTH_SHORT).show()
+
 
         //referencio la base de datos para poder usarla donde me interese
         val db: AppDataBase = Room.databaseBuilder(this,AppDataBase::class.java,"paginasDb").allowMainThreadQueries().build()
 
         //inicializo lista en la que guardo lo que recoja de la base de datos
         listadoPaginas = db.paginaDao().getAllPaginasByNum(viaje)
-        Toast.makeText(this,"paginas = ${listadoPaginas.size.toString()}",Toast.LENGTH_SHORT).show()
         //referencio el boton + y lo inicializo
         val fab = binding.fab
         fab.setOnClickListener {

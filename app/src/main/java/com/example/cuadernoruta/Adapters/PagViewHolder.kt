@@ -114,7 +114,7 @@ class PagViewHolder(view: View): RecyclerView.ViewHolder(view) {
                     val paginaABorrar = db.paginaDao().getById(pagina.id)
                     db.paginaDao().delete(paginaABorrar)
                     //vuelvo a la actividad ppal para comprobar si se ha almacenado la hoja de gasto
-                    val intent = Intent(gasolina.context,primeraActivity::class.java)
+                    val intent = Intent(gasolina.context,MainActivity::class.java)
                     gasolina.context.startActivity(intent)
                 }
                 .setCancelable(false)

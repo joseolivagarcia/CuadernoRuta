@@ -8,7 +8,7 @@
         <entry key="app/src/main/res/drawable/redondeobordes.xml" value="0.2755" />
         <entry key="app/src/main/res/layout/activity_edit.xml" value="0.4166666666666667" />
         <entry key="app/src/main/res/layout/activity_gastos_totales.xml" value="0.4166666666666667" />
-        <entry key="app/src/main/res/layout/activity_graph_alimentacion.xml" value="0.4166666666666667" />
+        <entry key="app/src/main/res/layout/activity_graph_alimentacion.xml" value="0.22" />
         <entry key="app/src/main/res/layout/activity_graph_gastos_totales.xml" value="0.4166666666666667" />
         <entry key="app/src/main/res/layout/activity_graph_locomocion.xml" value="0.4166666666666667" />
         <entry key="app/src/main/res/layout/activity_graph_ocio.xml" value="0.40260416666666665" />
