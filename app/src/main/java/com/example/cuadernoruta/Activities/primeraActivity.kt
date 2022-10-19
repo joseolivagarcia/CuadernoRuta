@@ -6,33 +6,33 @@ import android.os.Bundle
 import android.view.View
 import android.widget.*
 import androidx.appcompat.app.AlertDialog
+import androidx.lifecycle.Observer
+import androidx.lifecycle.ViewModelProvider
 import androidx.room.Room
 import com.example.cuadernoruta.BBDD.AppDataBase
 import com.example.cuadernoruta.Models.Viajes
 import com.example.cuadernoruta.R
+import com.example.cuadernoruta.data.ViajesAppDb.Companion.db
+import com.example.cuadernoruta.databinding.ActivityPrimeraBinding
+import com.example.cuadernoruta.viewmodel.PrimeraViewModel
 
-class primeraActivity : AppCompatActivity(), AdapterView.OnItemSelectedListener  {
+class primeraActivity : AppCompatActivity(){
 
-    var listaViajesSpinner: MutableList<String> = mutableListOf()
+    lateinit var binding: ActivityPrimeraBinding
+    lateinit var viewmodel: PrimeraViewModel //referencio mi ViewModel
+    val listaViajesSp: ArrayList<String> = arrayListOf()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_primera)
-        //meto un primer elemento para que se muestre algo por defecto
-        listaViajesSpinner.add("Lista de viajes")
+        binding = ActivityPrimeraBinding.inflate(layoutInflater)
+        setContentView(binding.root)
 
-        //referencio la base de datos para poder usarla donde me interese
-        val db: AppDataBase = Room.databaseBuilder(this, AppDataBase::class.java,"paginasDb").allowMainThreadQueries().build()
-        //y relleno el spinner con los datos que obtenga de ella
-        val viajes:MutableList<Viajes> = db.paginaDao().getAllViajes()
-        for(v in viajes){
-            listaViajesSpinner.add(v.nomViaje)
-        }
-        val sp = findViewById<Spinner>(R.id.spinner)
-        sp.onItemSelectedListener = this
+        viewmodel = ViewModelProvider(this).get(PrimeraViewModel::class.java) //inicializo mi viewmodel
+        val spinner = binding.spinner
+        val adapter = ArrayAdapter<String>(this,android.R.layout.simple_list_item_activated_1,listaViajesSp)
+        spinner.adapter = adapter
 
-        val btncrear = findViewById<TextView>(R.id.tvcrear)
-
+        val btncrear = binding.tvcrear
         btncrear.setOnClickListener {
             //creo un alert dialog para introducir el viaje que queramos crear y añadir a la lista
             val inflater = layoutInflater //para pasarle el layout al dialog
@@ -46,7 +46,8 @@ class primeraActivity : AppCompatActivity(), AdapterView.OnItemSelectedListener 
                     dialog, _ -> dialog.dismiss()
                 //añadimos el viaje a la bbdd
                 val newViaje = Viajes(0,textodialog.text.toString())
-                db.paginaDao().insertViaje(newViaje)
+                viewmodel.guardarViaje(newViaje)
+                spinner.setSelection(0)
             }
             buildialog.setNegativeButton("Cancelar"){
                     dialog, _ -> dialog.dismiss()
@@ -56,27 +57,35 @@ class primeraActivity : AppCompatActivity(), AdapterView.OnItemSelectedListener 
             /*
             val intent = Intent(this,MainActivity::class.java)
             startActivity(intent)
-
              */
         }
 
-        //creo el adapter para el spinner y se lo adapto
-        val spadapter: ArrayAdapter<String> = ArrayAdapter(this,android.R.layout.simple_spinner_item,listaViajesSpinner)
-        spadapter.setDropDownViewResource(android.R.layout.simple_list_item_activated_1)
-        sp.adapter = spadapter
-        sp.setSelection(0)
-
-    }
-
-    override fun onItemSelected(p0: AdapterView<*>?, p1: View?, position: Int, p3: Long) {
-        if(position != 0) {
-            val intent = Intent(this, MainActivity::class.java)
-            intent.putExtra("viaje", position)
-            startActivity(intent)
+        viewmodel.viajesList.observe(this, Observer { list ->list?.let{
+            //actualizamos la lista
+            listaViajesSp.clear()
+            listaViajesSp.add(0,"Viajes")
+            for (v in list){
+                listaViajesSp.add(v.nomViaje)
+                adapter.notifyDataSetChanged()
+            }
         }
-    }
+        })
 
-    override fun onNothingSelected(p0: AdapterView<*>?) {
+        spinner.onItemSelectedListener = object : AdapterView.OnItemSelectedListener {
+            override fun onItemSelected(p0: AdapterView<*>?, p1: View?, position: Int, p3: Long) {
+                if(position != 0) {
+                    val intent = Intent(applicationContext, MainActivity::class.java)
+                    intent.putExtra("viaje", position)
+                    startActivity(intent)
+                }
+                Toast.makeText(applicationContext,"Has seleccionado $position ${listaViajesSp.get(position)}", Toast.LENGTH_SHORT).show()
+            }
+
+            override fun onNothingSelected(p0: AdapterView<*>?) {
+                TODO("Not yet implemented")
+            }
+
+        }
 
     }
 

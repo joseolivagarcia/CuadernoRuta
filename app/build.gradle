@@ -54,7 +54,19 @@ dependencies {
 
     implementation "androidx.room:room-runtime:2.4.3"
     kapt "androidx.room:room-compiler:2.4.3"
+    implementation 'androidx.room:room-ktx:2.4.3'
 
     //dependencia para graficas
     implementation 'com.github.PhilJay:MPAndroidChart:v3.1.0'
+
+    //viewModel
+    implementation 'androidx.lifecycle:lifecycle-viewmodel-ktx:2.5.1'
+    //livedata
+    implementation 'androidx.lifecycle:lifecycle-livedata-ktx:2.5.1'
+    //para activitys y fragment
+    implementation 'androidx.fragment:fragment-ktx:1.5.2'
+    implementation 'androidx.activity:activity-ktx:1.5.1'
+    //corutinas
+    implementation 'androidx.lifecycle:lifecycle-runtime-ktx:2.5.1'
+    implementation("org.jetbrains.kotlinx:kotlinx-coroutines-android:1.3.9")
 }

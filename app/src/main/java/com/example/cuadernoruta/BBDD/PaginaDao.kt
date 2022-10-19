@@ -1,5 +1,6 @@
 package com.example.cuadernoruta.BBDD
 
+import androidx.lifecycle.LiveData
 import androidx.room.*
 import com.example.cuadernoruta.Models.Pagina
 import com.example.cuadernoruta.Models.Viajes
@@ -63,7 +64,7 @@ interface PaginaDao {
 
     //sentencias para obtener los viajes que hayamos añadido
     @Query("Select * From Viajes")
-    fun getAllViajes(): MutableList<Viajes>
+    fun getAllViajes(): LiveData<List<Viajes>>
     @Insert
-    fun insertViaje(viajes: Viajes)
+    suspend fun insertViaje(viajes: Viajes)
 }
