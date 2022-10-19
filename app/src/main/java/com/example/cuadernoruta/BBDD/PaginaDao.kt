@@ -67,4 +67,8 @@ interface PaginaDao {
     fun getAllViajes(): LiveData<List<Viajes>>
     @Insert
     suspend fun insertViaje(viajes: Viajes)
+    @Delete
+    suspend fun deleteViaje(viajes: Viajes)
+    @Query("Delete from Viajes Where nomViaje = :nomviaje")
+    suspend fun borrarViaje(nomviaje: String)
 }

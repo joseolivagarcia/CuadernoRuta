@@ -20,4 +20,16 @@ class PrimeraViewModel: ViewModel() {
             db.paginaDao().insertViaje(viaje)
         }
     }
+
+    fun deleteViaje(viaje: Viajes){
+        viewModelScope.launch {
+            db.paginaDao().deleteViaje(viaje)
+        }
+    }
+
+    fun borrarViaje(nomviaje: String){
+        viewModelScope.launch {
+            db.paginaDao().borrarViaje(nomviaje)
+        }
+    }
 }

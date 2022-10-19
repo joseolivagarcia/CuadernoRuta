@@ -28,7 +28,7 @@
         android:id="@+id/tvcrear"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Crea un viaje nuevo"
+        android:text="Crea, "
         android:textStyle="bold|italic"
         android:textColor="@color/black"
         android:textSize="16dp"
@@ -38,14 +38,29 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.15"
         app:layout_constraintVertical_bias="0.1"/>
+
+    <TextView
+        android:id="@+id/tveliminar"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="elimina,"
+        android:textStyle="bold|italic"
+        android:textColor="@color/black"
+        android:textSize="16dp"
+        app:layout_constraintTop_toBottomOf="@id/logo"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="@id/tvcrear"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.15"
+        app:layout_constraintVertical_bias="0.1"/>
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text=" o selecciona uno de la lista"
+        android:text="o selecciona un viaje de la lista"
         android:textSize="14dp"
         app:layout_constraintTop_toBottomOf="@id/logo"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintStart_toEndOf="@id/tvcrear"
+        app:layout_constraintStart_toEndOf="@id/tveliminar"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.09"
         app:layout_constraintVertical_bias="0.1"/>

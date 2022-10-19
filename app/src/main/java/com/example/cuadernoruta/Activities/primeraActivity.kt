@@ -30,8 +30,7 @@ class primeraActivity : AppCompatActivity() {
         viewmodel =
             ViewModelProvider(this).get(PrimeraViewModel::class.java) //inicializo mi viewmodel
         val spinner = binding.spinner
-        val adapter =
-            ArrayAdapter<String>(this, android.R.layout.simple_list_item_activated_1, listaViajesSp)
+        val adapter = ArrayAdapter<String>(this, android.R.layout.simple_list_item_activated_1, listaViajesSp)
         spinner.adapter = adapter
 
         val btncrear = binding.tvcrear
@@ -42,7 +41,7 @@ class primeraActivity : AppCompatActivity() {
             val textodialog =
                 dialoglayout.findViewById<EditText>(R.id.ettituloviaje) //para poder capturar el texto que escribamos
             val buildialog = AlertDialog.Builder(this) //creamos el alertdialog
-            buildialog.setTitle("Viajes")
+            buildialog.setTitle("Crear Viaje")
             buildialog.setView(dialoglayout) //pasamos el layout al alertdialog
             //creamos los botones del alert
             buildialog.setPositiveButton("Añadir") { dialog, _ ->
@@ -50,6 +49,34 @@ class primeraActivity : AppCompatActivity() {
                 //añadimos el viaje a la bbdd
                 val newViaje = Viajes(0, textodialog.text.toString())
                 viewmodel.guardarViaje(newViaje)
+                spinner.setSelection(0)
+            }
+            buildialog.setNegativeButton("Cancelar") { dialog, _ ->
+                dialog.dismiss()
+            }
+            buildialog.show() //mostramos el alertdialog
+
+            /*
+            val intent = Intent(this,MainActivity::class.java)
+            startActivity(intent)
+             */
+        }
+        val btneliminar = binding.tveliminar
+        btneliminar.setOnClickListener {
+            //creo un alert dialog para introducir el viaje que queramos eliminar de la lista
+            val inflater = layoutInflater //para pasarle el layout al dialog
+            val dialoglayout = inflater.inflate(R.layout.dailog, null) //paso el xml al inflater
+            val textodialog =
+                dialoglayout.findViewById<EditText>(R.id.ettituloviaje) //para poder capturar el texto que escribamos
+            val buildialog = AlertDialog.Builder(this) //creamos el alertdialog
+            buildialog.setTitle("Eliminar Viaje")
+            buildialog.setView(dialoglayout) //pasamos el layout al alertdialog
+            //creamos los botones del alert
+            buildialog.setPositiveButton("Eliminar") { dialog, _ ->
+                dialog.dismiss()
+                //eliminamos el viaje a la bbdd
+                viewmodel.borrarViaje(textodialog.text.toString())
+                Toast.makeText(this,"Has borrado ${textodialog.text}",Toast.LENGTH_SHORT).show()
                 spinner.setSelection(0)
             }
             buildialog.setNegativeButton("Cancelar") { dialog, _ ->

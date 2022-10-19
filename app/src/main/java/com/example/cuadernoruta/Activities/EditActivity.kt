@@ -66,7 +66,7 @@ class EditActivity : AppCompatActivity() {
 
         //recojo el id que me viene (si es que me viene)
         val paginaid = intent.extras?.getInt("idpagina")
-        Toast.makeText(this, "${paginaid.toString()}", Toast.LENGTH_SHORT).show()
+
 
         //referencio la base de datos para poder usarla donde me interese
         val db: AppDataBase = Room.databaseBuilder(this, AppDataBase::class.java, "paginasDb")
