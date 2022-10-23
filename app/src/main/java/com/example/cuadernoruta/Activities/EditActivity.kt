@@ -53,6 +53,7 @@ class EditActivity : AppCompatActivity() {
 
         //tambien recojo el que me viene del pageviewholder para cuando edite una pagina
         var numviajeedit = intent.extras!!.getInt("viajeedit")
+        val nombreviaje = intent.extras!!.getString("nomviaje")
 
 
         //para poner la flecha atras en el toolbar
@@ -259,7 +260,7 @@ class EditActivity : AppCompatActivity() {
                             datosotrosocio.toFloat(),
                             datoscoment,
                             numviajeedit,
-                            nomviaje!!
+                            nombreviaje!!
                         )
                     }
 

@@ -89,25 +89,25 @@ class MainActivity : AppCompatActivity() {
 
             R.id.locomocion -> {
                 val intent = Intent(this,GraphLocomocionActivity::class.java)
-                intent.putExtra("num", numviaje)
+                intent.putExtra("nomviaje", nomviaje)
                 startActivity( intent)
                 return true
             }
             R.id.ocio -> {
                 val intent = Intent(this,GraphOcioActivity::class.java)
-                intent.putExtra("num", numviaje)
+                intent.putExtra("nomviaje", nomviaje)
                 startActivity( intent, null)
                 return true
             }
             R.id.compras -> {
                 val intent = Intent(this,GraphAlimentacionActivity::class.java)
-                intent.putExtra("num", numviaje)
+                intent.putExtra("nomviaje", nomviaje)
                 startActivity( intent, null)
                 return true
             }
             R.id.total -> {
                 val intent = Intent(this,GraphGastosTotalesActivity::class.java)
-                intent.putExtra("num", numviaje)
+                intent.putExtra("nomviaje", nomviaje)
                 startActivity( intent, null)
                 return true
             }

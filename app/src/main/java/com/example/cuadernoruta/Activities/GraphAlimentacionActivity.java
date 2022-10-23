@@ -43,14 +43,14 @@ public class GraphAlimentacionActivity extends AppCompatActivity {
 
         //recojo el viaje que me viene de la primera activity
         int viaje = getIntent().getExtras().getInt("num");
-
+        String nombreviaje = getIntent().getExtras().getString("nomviaje");
         //inicializo la bbdd
         db = Room.databaseBuilder(this,AppDataBase.class,"paginasDb").allowMainThreadQueries().build();
 
         //referenciamos la vista
         BarChart barChart = findViewById(R.id.idbarchartalimen);
         //llamo al metodo del que obtendre los datos antes de rellenar las barras de la grafica
-        getBarChartEntries(viaje);
+        getBarChartEntries(nombreviaje);
         //creo un bar data set
         BarDataSet barDataSet = new BarDataSet(barEntriesList,"1.Supermercado 2.Restaurantes 3.Otros");
         //necesito un bardata y pasarle el bardataset
@@ -70,7 +70,7 @@ public class GraphAlimentacionActivity extends AppCompatActivity {
 
     }
 
-    private void getBarChartEntries(int viaje) {
+    private void getBarChartEntries(String viaje) {
         //obtengo los totales de cada categoria que vaya a mostrar en la grafica
         Float totalsuper = db.paginaDao().gettotalsuper(viaje);
         Float totalrtes = db.paginaDao().gettotalrtes(viaje);

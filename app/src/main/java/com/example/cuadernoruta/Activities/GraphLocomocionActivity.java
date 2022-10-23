@@ -45,7 +45,9 @@ public class GraphLocomocionActivity extends AppCompatActivity {
 
         //recojo el viaje que me viene de la primera activity
         int viaje = getIntent().getExtras().getInt("num");
-        Toast.makeText(this, "Recibo " + viaje, Toast.LENGTH_SHORT).show();
+        String nombreviaje = getIntent().getExtras().getString("nomviaje");
+        //Toast.makeText(this, "Recibo " + viaje, Toast.LENGTH_SHORT).show();
+        Toast.makeText(this, "Recibo " + nombreviaje, Toast.LENGTH_SHORT).show();
 
         //inicializo la bbdd
         db = Room.databaseBuilder(this,AppDataBase.class,"paginasDb").allowMainThreadQueries().build();
@@ -53,7 +55,7 @@ public class GraphLocomocionActivity extends AppCompatActivity {
         //referenciamos la vista
         BarChart barChart = findViewById(R.id.idbarchart);
         //llamo al metodo del que obtendre los datos antes de rellenar las barras de la grafica
-        getBarChartEntries(viaje); //llamo a la funcion y le paso el numero de viaje para filtrar por viaje
+        getBarChartEntries(nombreviaje); //llamo a la funcion y le paso el numero de viaje para filtrar por viaje
         //creo un bar data set
         BarDataSet barDataSet = new BarDataSet(barEntriesList,"1.Km 2.Gasolina 3.Peajes 4.Pernoctas");
         //necesito un bardata y pasarle el bardataset
@@ -73,7 +75,7 @@ public class GraphLocomocionActivity extends AppCompatActivity {
 
     }
 
-    private void getBarChartEntries(int viaje) {
+    private void getBarChartEntries(String viaje) {
         //obtengo los totales de cada categoria que vaya a mostrar en la grafica
         Float totalkm = db.paginaDao().gettotalkm(viaje);
         Float totalgasolina = db.paginaDao().gettotalgasolina(viaje);

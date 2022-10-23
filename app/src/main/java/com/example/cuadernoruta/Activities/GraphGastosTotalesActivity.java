@@ -47,17 +47,17 @@ public class GraphGastosTotalesActivity extends AppCompatActivity {
 
         //recojo el viaje que me viene de la primera activity
         int viaje = getIntent().getExtras().getInt("num");
-
+        String nombreviaje = getIntent().getExtras().getString("nomviaje");
         //inicializo la bbdd
         db = Room.databaseBuilder(this,AppDataBase.class,"paginasDb").allowMainThreadQueries().build();
         //obtengo y pongo los km totales que no iran en la grafica
-        Float kmtotales = db.paginaDao().gettotalkm(viaje);
+        Float kmtotales = db.paginaDao().gettotalkm(nombreviaje);
         TextView etkm = findViewById(R.id.tv_totalkm);
         etkm.setText(kmtotales.toString() + " Km");
 
 
         PieChart pieChart = findViewById(R.id.PieChart);
-        getPieChartEntries(viaje);
+        getPieChartEntries(nombreviaje);
 
         PieDataSet pieDataSet = new PieDataSet(pieEntriesList,"Gastos Totales");
         pieDataSet.setColors(ColorTemplate.COLORFUL_COLORS);
@@ -72,7 +72,7 @@ public class GraphGastosTotalesActivity extends AppCompatActivity {
         pieChart.animate();
     }
 
-    private void getPieChartEntries(int viaje) {
+    private void getPieChartEntries(String viaje) {
         //obtengo los totales de cada categoria que vaya a mostrar en la grafica
         Float totalfinal = db.paginaDao().gettotal(viaje);
         Float totalgasolina = db.paginaDao().gettotalgasolina(viaje);
